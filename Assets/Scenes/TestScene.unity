@@ -6834,6 +6834,25 @@ MonoBehaviour:
   - {fileID: 706293898}
   - {fileID: 99404668}
   - {fileID: 476882564}
+  ColorTile:
+  - {fileID: 21300000, guid: 30055b4b60ecd1e44940915171013318, type: 3}
+  - {fileID: 21300000, guid: 643ac8c7c67c6554c9ac619ecfa58f42, type: 3}
+  - {fileID: 21300000, guid: 6468a6611dab6d54a893e0b264b0bab7, type: 3}
+  - {fileID: 21300000, guid: 08add54a978d88e40949eb6fb02c50dc, type: 3}
+  Blocks:
+  - {fileID: 1912540894202798, guid: 3e8c811213c7bed479bfb64531f3c7dc, type: 2}
+  - {fileID: 1743087647201050, guid: 64a0b76c10c456444961e0dddca21920, type: 2}
+  - {fileID: 1965075139103964, guid: be59719710c12eb4ab02834daefc1f41, type: 2}
+  - {fileID: 1208870671242388, guid: 4d38e3c7f6b5d1349bed2903dddde854, type: 2}
+  - {fileID: 1887801056618166, guid: 7c8cf79611c2d8a44961b5509173660d, type: 2}
+  - {fileID: 1824636137021662, guid: 83094fa33004f7c439e20c2951de9f3c, type: 2}
+  - {fileID: 1863095336448790, guid: 9b3d85c68a77aba4eb71341baa8620d4, type: 2}
+  - {fileID: 1394360237098998, guid: 058b3dca4704c3a44bc1ff21970424e9, type: 2}
+  - {fileID: 1199342580539476, guid: d907521553a32a3409cd6d551c1b9949, type: 2}
+  ControlBlock:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &1433454973
 Transform:
   m_ObjectHideFlags: 0
