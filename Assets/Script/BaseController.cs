@@ -14,14 +14,17 @@ public class BaseController : MonoBehaviour
     public GameObject[] Section7;
     public Sprite[] ColorTile;
     public GameObject[] Blocks;
-
     public GameObject[] ControlBlock;
+
+    public GameObject CreatedBlocks;
+    public GameObject[] Tile;
+    public bool IsBlockCreated;
+
     private float GameTime;
     private float RotateStartTime;
     private float StartRotateAngle;
     private bool IsRotateRight;
     private bool IsRotateLeft;
-    private bool IsBlockCreated;
     private int BlockColor;
     private int BlockNumber;
 
@@ -41,6 +44,12 @@ public class BaseController : MonoBehaviour
         RotateRight();
         RotateLeft();
         CreateBlocks();
+
+        if (Input.GetKeyDown (KeyCode.DownArrow))
+        {
+            if(CheckBeforeMove () == true)
+                MoveBlocks ();
+        }
     }
 
     private void RotateRight()
@@ -91,7 +100,7 @@ public class BaseController : MonoBehaviour
 
     private void CreateBlocks()
     {
-        if (Input.GetKeyUp(KeyCode.C) && IsRotateRight == false && IsRotateLeft == false)
+        if (Input.GetKeyUp(KeyCode.C) && IsRotateRight == false && IsRotateLeft == false && IsBlockCreated == false)
         {
             BlockColor = Random.Range(0, 3);
             BlockNumber = Random.Range(0, 8);
@@ -99,7 +108,7 @@ public class BaseController : MonoBehaviour
             Instantiate(Blocks[BlockNumber], this.transform);
 
             string ControlBlockName = Blocks[BlockNumber].name + "(Clone)";
-            GameObject CreatedBlocks = GameObject.Find(ControlBlockName);
+            CreatedBlocks = GameObject.Find(ControlBlockName);
 
             for (int i = 0; i <= 2; i++)
             {
@@ -107,6 +116,89 @@ public class BaseController : MonoBehaviour
                 ControlBlock[i].GetComponent<SpriteRenderer>().sprite = ColorTile[BlockColor];
                 Debug.Log(BlockColor);
             }
+
+            IsBlockCreated = true;
+        }
+    }
+
+    private void MoveBlocks()
+    {
+        if (IsBlockCreated == true && IsRotateRight == false && IsRotateLeft == false)
+        {
+            ControlBlock[0].transform.localPosition = ControlBlock[0].transform.localPosition + GravityVector ();
+            ControlBlock[1].transform.localPosition = ControlBlock[1].transform.localPosition + GravityVector ();
+            ControlBlock[2].transform.localPosition = ControlBlock[2].transform.localPosition + GravityVector ();
+        }
+    }
+
+    private Vector3 GravityVector()
+    {
+        int BaseAngle = (int)transform.eulerAngles.z;
+        switch (BaseAngle)
+        {
+        case 0:
+            return new Vector3 (0, -2.1f, 0);
+        case 60:
+            return new Vector3 (-1.83f, -1.05f, 0);
+        case 120:
+            return new Vector3 (-1.83f, 1.05f, 0);
+        case 180:
+            return new Vector3 (0, 2.1f, 0);
+        case 240:
+            return new Vector3 (1.83f, 1.05f, 0);
+        case 300:
+            return new Vector3 (1.83f, -1.05f, 0);
+        default:
+            Debug.Log ("Wrong Angle");
+            return new Vector3 (0, 0, 0);
+        }
+    }
+
+    private bool CheckBeforeMove()
+    {
+        bool FirstBlockCanMove = false;
+        bool SecondBlockCanMove = false;
+        bool ThirdBlockCanMove = false;
+
+        for (int i = 0; i < 169; i++)
+        {
+            if (Tile [i].transform.localPosition == ControlBlock [0].transform.localPosition + GravityVector ())
+            {
+                Debug.Log ("First block founds same position tile");
+                if (Tile [i].GetComponent<SpriteRenderer> ().sprite.name == "Hex_Gray")
+                {
+                    Debug.Log ("That tile's sprite is gray");
+                    FirstBlockCanMove = true;
+                }
+            }
+            if (Tile [i].transform.localPosition == ControlBlock [1].transform.localPosition + GravityVector ())
+            {
+                if (Tile [i].GetComponent<SpriteRenderer> ().sprite.name == "Hex_Gray")
+                {
+                    SecondBlockCanMove = true;
+                }
+            }
+            if (Tile [i].transform.localPosition == ControlBlock [2].transform.localPosition + GravityVector () && Tile [i].GetComponent<SpriteRenderer> ().sprite.name == "Hex_Gray")
+            {
+                if (Tile [i].GetComponent<SpriteRenderer> ().sprite.name == "Hex_Gray")
+                {
+                    ThirdBlockCanMove = true;
+                }
+            }
+        }
+
+        if (FirstBlockCanMove && SecondBlockCanMove && ThirdBlockCanMove)
+        {
+            Debug.Log ("Check Before Move is True");
+            return true;
+        }
+        else
+        {
+            Debug.Log (FirstBlockCanMove);
+            Debug.Log (SecondBlockCanMove);
+            Debug.Log (ThirdBlockCanMove);
+            Debug.Log ("Check Before Move is False");
+            return false;
         }
     }
 }
