@@ -13,7 +13,12 @@ public class BaseController : MonoBehaviour
     public GameObject[] Section6;
     public GameObject[] Section7;
     public Sprite[] ColorTile;
-    public GameObject[] Blocks;
+    public GameObject[] Blocks0;
+    public GameObject[] Blocks60;
+    public GameObject[] Blocks120;
+    public GameObject[] Blocks180;
+    public GameObject[] Blocks240;
+    public GameObject[] Blocks300;
     public GameObject[] ControlBlock;
 
     public GameObject CreatedBlocks;
@@ -119,17 +124,89 @@ public class BaseController : MonoBehaviour
         {
             BlockColor = Random.Range(1, 4);
             BlockNumber = Random.Range(0, 8);
-            
-            Instantiate(Blocks[BlockNumber], this.transform);
 
-            string ControlBlockName = Blocks[BlockNumber].name + "(Clone)";
-            CreatedBlocks = GameObject.Find(ControlBlockName);
+            string ControlBlockName;
 
-            for (int i = 0; i <= 2; i++)
+            switch ((int)transform.eulerAngles.z)
             {
-                ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
-                ControlBlock[i].GetComponent<SpriteRenderer>().sprite = ColorTile[BlockColor];
-                Debug.Log(BlockColor);
+                case 0:
+                    Instantiate(Blocks0[BlockNumber], this.transform, false);
+
+                    ControlBlockName = Blocks0[BlockNumber].name + "(Clone)";
+                    CreatedBlocks = GameObject.Find(ControlBlockName);
+
+                    for (int i = 0; i <= 2; i++)
+                    {
+                        ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
+                        ControlBlock[i].GetComponent<SpriteRenderer>().sprite = ColorTile[BlockColor];
+                        Debug.Log(BlockColor);
+                    }
+                    break;
+                case 60:
+                    Instantiate(Blocks60[BlockNumber], this.transform, false);
+
+                    ControlBlockName = Blocks60[BlockNumber].name + "(Clone)";
+                    CreatedBlocks = GameObject.Find(ControlBlockName);
+
+                    for (int i = 0; i <= 2; i++)
+                    {
+                        ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
+                        ControlBlock[i].GetComponent<SpriteRenderer>().sprite = ColorTile[BlockColor];
+                        Debug.Log(BlockColor);
+                    }
+                    break;
+                case 120:
+                    Instantiate(Blocks120[BlockNumber], this.transform, false);
+
+                    ControlBlockName = Blocks120[BlockNumber].name + "(Clone)";
+                    CreatedBlocks = GameObject.Find(ControlBlockName);
+
+                    for (int i = 0; i <= 2; i++)
+                    {
+                        ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
+                        ControlBlock[i].GetComponent<SpriteRenderer>().sprite = ColorTile[BlockColor];
+                        Debug.Log(BlockColor);
+                    }
+                    break;
+                case 180:
+                    Instantiate(Blocks180[BlockNumber], this.transform, false);
+
+                    ControlBlockName = Blocks180[BlockNumber].name + "(Clone)";
+                    CreatedBlocks = GameObject.Find(ControlBlockName);
+
+                    for (int i = 0; i <= 2; i++)
+                    {
+                        ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
+                        ControlBlock[i].GetComponent<SpriteRenderer>().sprite = ColorTile[BlockColor];
+                        Debug.Log(BlockColor);
+                    }
+                    break;
+                case 240:
+                    Instantiate(Blocks240[BlockNumber], this.transform, false);
+
+                    ControlBlockName = Blocks240[BlockNumber].name + "(Clone)";
+                    CreatedBlocks = GameObject.Find(ControlBlockName);
+
+                    for (int i = 0; i <= 2; i++)
+                    {
+                        ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
+                        ControlBlock[i].GetComponent<SpriteRenderer>().sprite = ColorTile[BlockColor];
+                        Debug.Log(BlockColor);
+                    }
+                    break;
+                case 300:
+                    Instantiate(Blocks300[BlockNumber], this.transform, false);
+
+                    ControlBlockName = Blocks300[BlockNumber].name + "(Clone)";
+                    CreatedBlocks = GameObject.Find(ControlBlockName);
+
+                    for (int i = 0; i <= 2; i++)
+                    {
+                        ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
+                        ControlBlock[i].GetComponent<SpriteRenderer>().sprite = ColorTile[BlockColor];
+                        Debug.Log(BlockColor);
+                    }
+                    break;
             }
 
             IsBlockCreated = true;
