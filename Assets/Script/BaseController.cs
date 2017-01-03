@@ -61,8 +61,9 @@ public class BaseController : MonoBehaviour
                         }
                     }
                 }
-                IsBlockCreated = false;
                 Destroy (CreatedBlocks);
+                ClearBlock();
+                IsBlockCreated = false;
             }
         }
     }
@@ -120,7 +121,7 @@ public class BaseController : MonoBehaviour
             BlockColor = Random.Range(1, 4);
             BlockNumber = Random.Range(0, 8);
             
-            Instantiate(Blocks[BlockNumber], this.transform);
+            Instantiate(Blocks[BlockNumber], this.transform, false);
 
             string ControlBlockName = Blocks[BlockNumber].name + "(Clone)";
             CreatedBlocks = GameObject.Find(ControlBlockName);
@@ -128,7 +129,7 @@ public class BaseController : MonoBehaviour
             for (int i = 0; i <= 2; i++)
             {
                 ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
-                ControlBlock[i].GetComponent<SpriteRenderer>().sprite = ColorTile[BlockColor];
+                ControlBlock[i].GetComponent<SpriteRenderer>().sprite = ColorTile[5];
                 Debug.Log(BlockColor);
             }
 
@@ -207,6 +208,31 @@ public class BaseController : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    private void ClearBlock()
+    {
+        int IsSection7Full = 1;
+
+        for (int i = 0; i < 42; i++)
+        {
+            if (Section7[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
+            {
+                IsSection7Full = IsSection7Full * 1;
+            }
+            else
+            {
+                IsSection7Full = IsSection7Full * 0;
+            }
+        }
+
+        if (IsSection7Full == 1)
+        {
+            for (int i = 0; i < 42; i++)
+            {
+                Section7[i].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+            }
         }
     }
 }
