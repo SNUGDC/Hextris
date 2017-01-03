@@ -45,7 +45,7 @@ public class BaseController : MonoBehaviour
         RotateLeft();
         CreateBlocks();
 
-        if (Input.GetKeyDown (KeyCode.DownArrow))
+        if (Input.GetKeyDown (KeyCode.DownArrow) && IsRotateLeft == false && IsRotateRight == false)
         {
             if (CheckBeforeMove () == true)
                 MoveBlocks ();
