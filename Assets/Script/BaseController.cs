@@ -47,8 +47,23 @@ public class BaseController : MonoBehaviour
 
         if (Input.GetKeyDown (KeyCode.DownArrow))
         {
-            if(CheckBeforeMove () == true)
+            if (CheckBeforeMove () == true)
                 MoveBlocks ();
+            else
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    for (int i = 0; i < 169; i++)
+                    {
+                        if (Tile [i].transform.localPosition == ControlBlock [j].transform.localPosition)
+                        {
+                            Tile [i].GetComponent<SpriteRenderer> ().sprite = ColorTile[BlockColor];
+                        }
+                    }
+                }
+                IsBlockCreated = false;
+                Destroy (CreatedBlocks);
+            }
         }
     }
 
@@ -164,10 +179,8 @@ public class BaseController : MonoBehaviour
         {
             if (Tile [i].transform.localPosition == ControlBlock [0].transform.localPosition + GravityVector ())
             {
-                Debug.Log ("First block founds same position tile");
                 if (Tile [i].GetComponent<SpriteRenderer> ().sprite.name == "Hex_Gray")
                 {
-                    Debug.Log ("That tile's sprite is gray");
                     FirstBlockCanMove = true;
                 }
             }
@@ -189,15 +202,10 @@ public class BaseController : MonoBehaviour
 
         if (FirstBlockCanMove && SecondBlockCanMove && ThirdBlockCanMove)
         {
-            Debug.Log ("Check Before Move is True");
             return true;
         }
         else
         {
-            Debug.Log (FirstBlockCanMove);
-            Debug.Log (SecondBlockCanMove);
-            Debug.Log (ThirdBlockCanMove);
-            Debug.Log ("Check Before Move is False");
             return false;
         }
     }
