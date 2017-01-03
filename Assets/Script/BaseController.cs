@@ -20,6 +20,11 @@ public class BaseController : MonoBehaviour
     public GameObject[] Tile;
     public bool IsBlockCreated;
 
+    public bool RightArrowIsClicked;
+    public bool LeftArrowIsClicked;
+    public bool DownArrowIsClicked;
+    public bool CreateBlock;
+
     private float GameTime;
     private float RotateStartTime;
     private float StartRotateAngle;
@@ -45,7 +50,7 @@ public class BaseController : MonoBehaviour
         RotateLeft();
         CreateBlocks();
 
-        if (Input.GetKeyDown (KeyCode.DownArrow) && IsRotateLeft == false && IsRotateRight == false)
+        if ((Input.GetKeyDown(KeyCode.DownArrow) || DownArrowIsClicked) && IsRotateLeft == false && IsRotateRight == false)
         {
             if (CheckBeforeMove () == true)
                 MoveBlocks ();
@@ -65,16 +70,18 @@ public class BaseController : MonoBehaviour
                 ClearBlock();
                 IsBlockCreated = false;
             }
+            DownArrowIsClicked = false;
         }
     }
 
     private void RotateRight()
     {
-        if (Input.GetKeyUp(KeyCode.RightArrow) && (IsRotateRight == false) && (IsRotateLeft == false))
+        if ((Input.GetKeyUp(KeyCode.RightArrow) || RightArrowIsClicked) && (IsRotateRight == false) && (IsRotateLeft == false))
         {
             RotateStartTime = GameTime;
             IsRotateRight = true;
             StartRotateAngle = transform.eulerAngles.z;
+            RightArrowIsClicked = false;
         }
 
         if (IsRotateRight == true)
@@ -93,11 +100,12 @@ public class BaseController : MonoBehaviour
 
     private void RotateLeft()
     {
-        if (Input.GetKeyUp(KeyCode.LeftArrow) && (IsRotateLeft == false) && (IsRotateRight == false))
+        if ((Input.GetKeyUp(KeyCode.LeftArrow) || LeftArrowIsClicked) && (IsRotateLeft == false) && (IsRotateRight == false))
         {
             RotateStartTime = GameTime;
             IsRotateLeft = true;
             StartRotateAngle = transform.eulerAngles.z;
+            LeftArrowIsClicked = false;
         }
 
         if (IsRotateLeft == true)
@@ -116,7 +124,7 @@ public class BaseController : MonoBehaviour
 
     private void CreateBlocks()
     {
-        if (Input.GetKeyUp(KeyCode.C) && IsRotateRight == false && IsRotateLeft == false && IsBlockCreated == false)
+        if ((Input.GetKeyUp(KeyCode.C) || CreateBlock) && IsRotateRight == false && IsRotateLeft == false && IsBlockCreated == false)
         {
             BlockColor = Random.Range(1, 4);
             BlockNumber = Random.Range(0, 8);
@@ -129,11 +137,12 @@ public class BaseController : MonoBehaviour
             for (int i = 0; i <= 2; i++)
             {
                 ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
-                ControlBlock[i].GetComponent<SpriteRenderer>().sprite = ColorTile[5];
+                ControlBlock[i].GetComponent<SpriteRenderer>().sprite = ColorTile[BlockColor];
                 Debug.Log(BlockColor);
             }
 
             IsBlockCreated = true;
+            CreateBlock = false;
         }
     }
 
@@ -213,6 +222,10 @@ public class BaseController : MonoBehaviour
 
     private void ClearBlock()
     {
+        int IsSection3Full = 1;
+        int IsSection4Full = 1;
+        int IsSection5Full = 1;
+        int IsSection6Full = 1;
         int IsSection7Full = 1;
 
         for (int i = 0; i < 42; i++)
@@ -227,11 +240,91 @@ public class BaseController : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < 36; i++)
+        {
+            if (Section6[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
+            {
+                IsSection6Full = IsSection6Full * 1;
+            }
+            else
+            {
+                IsSection6Full = IsSection6Full * 0;
+            }
+        }
+
+        for (int i = 0; i < 30; i++)
+        {
+            if (Section5[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
+            {
+                IsSection5Full = IsSection5Full * 1;
+            }
+            else
+            {
+                IsSection5Full = IsSection5Full * 0;
+            }
+        }
+
+        for (int i = 0; i < 24; i++)
+        {
+            if (Section4[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
+            {
+                IsSection4Full = IsSection4Full * 1;
+            }
+            else
+            {
+                IsSection4Full = IsSection4Full * 0;
+            }
+        }
+
+        for (int i = 0; i < 18; i++)
+        {
+            if (Section3[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
+            {
+                IsSection3Full = IsSection3Full * 1;
+            }
+            else
+            {
+                IsSection3Full = IsSection3Full * 0;
+            }
+        }
+
         if (IsSection7Full == 1)
         {
             for (int i = 0; i < 42; i++)
             {
-                Section7[i].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+                Section7[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+            }
+
+            if (IsSection6Full == 1)
+            {
+                for (int i = 0; i < 36; i++)
+                {
+                    Section6[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+                }
+
+                if (IsSection5Full == 1)
+                {
+                    for (int i = 0; i < 30; i++)
+                    {
+                        Section5[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+                    }
+
+                    if (IsSection4Full == 1)
+                    {
+                        for (int i = 0; i < 24; i++)
+                        {
+                            Section4[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+                        }
+
+                        if (IsSection3Full == 1)
+                        {
+                            for (int i = 0; i < 18; i++)
+                            {
+                                Section3[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+                            }
+                        }
+                    }
+                }
             }
         }
     }
