@@ -117,7 +117,7 @@ public class BaseController : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.C) && IsRotateRight == false && IsRotateLeft == false && IsBlockCreated == false)
         {
-            BlockColor = Random.Range(0, 3);
+            BlockColor = Random.Range(1, 4);
             BlockNumber = Random.Range(0, 8);
             
             Instantiate(Blocks[BlockNumber], this.transform);
