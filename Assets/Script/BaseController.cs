@@ -126,9 +126,26 @@ public class BaseController : MonoBehaviour
     {
         if ((Input.GetKeyUp(KeyCode.C) || CreateBlock) && IsRotateRight == false && IsRotateLeft == false && IsBlockCreated == false)
         {
-            BlockColor = Random.Range(1, 4);
-            BlockNumber = Random.Range(0, 8);
-            
+            BlockNumber = Random.Range(0, 3);
+
+            switch (BlockNumber)
+            {
+                case 0:
+                    BlockColor = 1;
+                    break;
+                case 1:
+                    BlockColor = 3;
+                    break;
+                case 2:
+                    BlockColor = 4;
+                    break;
+                default:
+                    Debug.Log ("Something Worng At Deciding Block Color");
+                    break;
+            }
+
+            BlockNumber = BlockNumber + 3 * ((int)transform.eulerAngles.z / 60);
+
             Instantiate(Blocks[BlockNumber], this.transform, false);
 
             string ControlBlockName = Blocks[BlockNumber].name + "(Clone)";
@@ -137,8 +154,6 @@ public class BaseController : MonoBehaviour
             for (int i = 0; i <= 2; i++)
             {
                 ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
-                ControlBlock[i].GetComponent<SpriteRenderer>().sprite = ColorTile[BlockColor];
-                Debug.Log(BlockColor);
             }
 
             IsBlockCreated = true;
@@ -292,35 +307,35 @@ public class BaseController : MonoBehaviour
         {
             for (int i = 0; i < 42; i++)
             {
-                Section7[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+                Section7 [i].GetComponent<SpriteRenderer> ().sprite = ColorTile [5];
             }
 
             if (IsSection6Full == 1)
             {
                 for (int i = 0; i < 36; i++)
                 {
-                    Section6[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+                    Section6[i].GetComponent<SpriteRenderer>().sprite = ColorTile [5];
                 }
 
                 if (IsSection5Full == 1)
                 {
                     for (int i = 0; i < 30; i++)
                     {
-                        Section5[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+                        Section5[i].GetComponent<SpriteRenderer>().sprite = ColorTile [5];
                     }
 
                     if (IsSection4Full == 1)
                     {
                         for (int i = 0; i < 24; i++)
                         {
-                            Section4[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+                            Section4[i].GetComponent<SpriteRenderer>().sprite = ColorTile [5];
                         }
 
                         if (IsSection3Full == 1)
                         {
                             for (int i = 0; i < 18; i++)
                             {
-                                Section3[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+                                Section3[i].GetComponent<SpriteRenderer>().sprite = ColorTile [5];
                             }
                         }
                     }
