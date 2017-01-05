@@ -145,7 +145,6 @@ public class BaseController : MonoBehaviour
             }
 
             BlockNumber = BlockNumber + 3 * ((int)transform.eulerAngles.z / 60);
-
             Instantiate(Blocks[BlockNumber], this.transform, false);
 
             string ControlBlockName = Blocks[BlockNumber].name + "(Clone)";
