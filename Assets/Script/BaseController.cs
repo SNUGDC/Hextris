@@ -24,6 +24,7 @@ public class BaseController : MonoBehaviour
     public bool LeftArrowIsClicked;
     public bool DownArrowIsClicked;
     public bool CreateBlock;
+    public int[] BlockOrder;
 
     private float GameTime;
     private float RotateStartTime;
@@ -32,6 +33,7 @@ public class BaseController : MonoBehaviour
     private bool IsRotateLeft;
     private int BlockColor;
     private int BlockNumber;
+    private int CreateBlockSwitcher;
 
     private void Start()
     {
@@ -40,6 +42,51 @@ public class BaseController : MonoBehaviour
         IsRotateRight = false;
         IsRotateLeft = false;
         IsBlockCreated = false;
+        CreateBlockSwitcher = 0;
+
+        BlockOrder [0] = Random.Range (0, 3);
+        switch (BlockOrder [0])
+        {
+        case 0:
+            BlockOrder [1] = Random.Range (0, 2);
+            if (BlockOrder [1] == 0)
+            {
+                BlockOrder [1] = 1;
+                BlockOrder [2] = 2;
+            }
+            else
+            {
+                BlockOrder [1] = 2;
+                BlockOrder [2] = 1;
+            }
+            break;
+        case 1:
+            BlockOrder [1] = Random.Range (0, 2);
+            if (BlockOrder [1] == 0)
+            {
+                BlockOrder [1] = 0;
+                BlockOrder [2] = 2;
+            }
+            else
+            {
+                BlockOrder [1] = 2;
+                BlockOrder [2] = 0;
+            }
+            break;
+        case 2:
+            BlockOrder [1] = Random.Range (0, 2);
+            if (BlockOrder [1] == 0)
+            {
+                BlockOrder [1] = 0;
+                BlockOrder [2] = 1;
+            }
+            else
+            {
+                BlockOrder [1] = 1;
+                BlockOrder [2] = 0;
+            }
+            break;
+        }
     }
 
     private void Update()
@@ -56,17 +103,8 @@ public class BaseController : MonoBehaviour
                 MoveBlocks ();
             else
             {
-                for (int j = 0; j < 3; j++)
-                {
-                    for (int i = 0; i < 169; i++)
-                    {
-                        if (Tile [i].transform.localPosition == ControlBlock [j].transform.localPosition)
-                        {
-                            Tile [i].GetComponent<SpriteRenderer> ().sprite = ColorTile[BlockColor];
-                        }
-                    }
-                }
-                Destroy (CreatedBlocks);
+                TileColoring ();
+                DestroyBlock ();
                 ClearBlock();
                 IsBlockCreated = false;
             }
@@ -122,11 +160,80 @@ public class BaseController : MonoBehaviour
         }
     }
 
+    private void CreateBlocksOrder()
+    {
+        BlockOrder = new int[3] { BlockOrder [1], BlockOrder [2], 3 };
+
+        switch (CreateBlockSwitcher)
+        {
+        case 0:
+            BlockOrder [2] = Random.Range (0, 3);
+            CreateBlockSwitcher = 1;
+            break;
+        case 1:
+            switch (BlockOrder [1])
+            {
+            case 0:
+                BlockOrder [2] = Random.Range (0, 2);
+                if (BlockOrder [2] == 0)
+                {
+                    BlockOrder [2] = 1;
+                    CreateBlockSwitcher = 4;
+                }
+                else
+                {
+                    BlockOrder [2] = 2;
+                    CreateBlockSwitcher = 3;
+                }
+                break;
+            case 1:
+                BlockOrder [2] = Random.Range (0, 2);
+                if (BlockOrder [2] == 0)
+                {
+                    BlockOrder [2] = 0;
+                    CreateBlockSwitcher = 4;
+                }
+                else
+                {
+                    BlockOrder [2] = 2;
+                    CreateBlockSwitcher = 2;
+                }
+                break;
+            case 2:
+                BlockOrder [2] = Random.Range (0, 2);
+                if (BlockOrder [2] == 0)
+                {
+                    BlockOrder [2] = 0;
+                    CreateBlockSwitcher = 3;
+                }
+                else
+                {
+                    BlockOrder [2] = 1;
+                    CreateBlockSwitcher = 2;
+                }
+                break;
+            }
+            break;
+        case 2:
+            BlockOrder [2] = 0;
+            CreateBlockSwitcher = 0;
+            break;
+        case 3:
+            BlockOrder [2] = 1;
+            CreateBlockSwitcher = 0;
+            break;
+        case 4:
+            BlockOrder [2] = 2;
+            CreateBlockSwitcher = 0;
+            break;
+        }
+    }
+
     private void CreateBlocks()
     {
         if ((Input.GetKeyUp(KeyCode.C) || CreateBlock) && IsRotateRight == false && IsRotateLeft == false && IsBlockCreated == false)
         {
-            BlockNumber = Random.Range(0, 3);
+            BlockNumber = BlockOrder [0];
 
             switch (BlockNumber)
             {
@@ -155,6 +262,7 @@ public class BaseController : MonoBehaviour
                 ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
             }
 
+            CreateBlocksOrder ();
             IsBlockCreated = true;
             CreateBlock = false;
         }
@@ -232,6 +340,25 @@ public class BaseController : MonoBehaviour
         {
             return false;
         }
+    }
+
+    private void TileColoring()
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            for (int i = 0; i < 169; i++)
+            {
+                if (Tile [i].transform.localPosition == ControlBlock [j].transform.localPosition)
+                {
+                    Tile [i].GetComponent<SpriteRenderer> ().sprite = ColorTile[BlockColor];
+                }
+            }
+        }
+    }
+
+    private void DestroyBlock()
+    {
+        Destroy (CreatedBlocks);
     }
 
     private void ClearBlock()
