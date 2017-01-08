@@ -29,6 +29,7 @@ public class BaseController : MonoBehaviour
     private float GameTime;
     private float RotateStartTime;
     private float StartRotateAngle;
+    private float RotatingSpeed;
     private bool IsRotateRight;
     private bool IsRotateLeft;
     private int BlockColor;
@@ -38,6 +39,7 @@ public class BaseController : MonoBehaviour
     private void Start()
     {
         GameTime = 0;
+        RotatingSpeed = 0.5f;
         RotateStartTime = 0;
         IsRotateRight = false;
         IsRotateLeft = false;
@@ -124,9 +126,9 @@ public class BaseController : MonoBehaviour
 
         if (IsRotateRight == true)
         {
-            if ((GameTime - RotateStartTime) <= 1f)
+            if ((GameTime - RotateStartTime) <= RotatingSpeed)
             {
-                transform.eulerAngles = new Vector3(0, 0, StartRotateAngle + (60f * (GameTime - RotateStartTime)));
+                transform.eulerAngles = new Vector3(0, 0, StartRotateAngle + (60f * (GameTime - RotateStartTime) / RotatingSpeed));
             }
             else
             {
@@ -148,9 +150,9 @@ public class BaseController : MonoBehaviour
 
         if (IsRotateLeft == true)
         {
-            if ((GameTime - RotateStartTime) <= 1f)
+            if ((GameTime - RotateStartTime) <= RotatingSpeed)
             {
-                transform.eulerAngles = new Vector3(0, 0, StartRotateAngle - (60f * (GameTime - RotateStartTime)));
+                transform.eulerAngles = new Vector3(0, 0, StartRotateAngle - (60f * (GameTime - RotateStartTime) / RotatingSpeed));
             }
             else
             {

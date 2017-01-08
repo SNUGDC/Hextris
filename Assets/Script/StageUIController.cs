@@ -18,8 +18,8 @@ public class StageUIController : MonoBehaviour
         StageInfo.GetComponent<RectTransform>().position = new Vector3(StageInfo.GetComponent<RectTransform>().position.x + 1080, StageInfo.GetComponent<RectTransform>().position.y, 0);
     }
 
-    public void GoToGameScene()
+    public void GoToGameScene(string SceneName)
     {
-
+        SceneManager.LoadScene(SceneName);
     }
 }
