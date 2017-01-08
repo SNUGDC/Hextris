@@ -104,7 +104,7 @@ public class Opening : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Stage Select");
+            SceneManager.LoadScene("Start");
         }
     }
 }
