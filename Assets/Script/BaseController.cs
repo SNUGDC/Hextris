@@ -20,9 +20,9 @@ public class BaseController : MonoBehaviour
     public GameObject[] Tile;
     public bool IsBlockCreated;
 
-    public bool RightArrowIsClicked;
-    public bool LeftArrowIsClicked;
-    public bool DownArrowIsClicked;
+    public bool RotateToRight;
+    public bool RotateToLeft;
+    public bool MoveBlockDownward;
     public bool CreateBlock;
     public int[] BlockOrder;
 
@@ -99,7 +99,7 @@ public class BaseController : MonoBehaviour
         RotateLeft();
         CreateBlocks();
 
-        if ((Input.GetKeyDown(KeyCode.DownArrow) || DownArrowIsClicked) && IsRotateLeft == false && IsRotateRight == false)
+        if ((Input.GetKeyDown(KeyCode.DownArrow) || MoveBlockDownward) && IsRotateLeft == false && IsRotateRight == false)
         {
             if (CheckBeforeMove () == true)
                 MoveBlocks ();
@@ -110,18 +110,18 @@ public class BaseController : MonoBehaviour
                 ClearBlock();
                 IsBlockCreated = false;
             }
-            DownArrowIsClicked = false;
+            MoveBlockDownward = false;
         }
     }
 
     private void RotateRight()
     {
-        if ((Input.GetKeyUp(KeyCode.RightArrow) || RightArrowIsClicked) && (IsRotateRight == false) && (IsRotateLeft == false))
+        if ((Input.GetKeyUp(KeyCode.RightArrow) || RotateToRight) && (IsRotateRight == false) && (IsRotateLeft == false))
         {
             RotateStartTime = GameTime;
             IsRotateRight = true;
             StartRotateAngle = transform.eulerAngles.z;
-            RightArrowIsClicked = false;
+            RotateToRight = false;
         }
 
         if (IsRotateRight == true)
@@ -140,12 +140,12 @@ public class BaseController : MonoBehaviour
 
     private void RotateLeft()
     {
-        if ((Input.GetKeyUp(KeyCode.LeftArrow) || LeftArrowIsClicked) && (IsRotateLeft == false) && (IsRotateRight == false))
+        if ((Input.GetKeyUp(KeyCode.LeftArrow) || RotateToLeft) && (IsRotateLeft == false) && (IsRotateRight == false))
         {
             RotateStartTime = GameTime;
             IsRotateLeft = true;
             StartRotateAngle = transform.eulerAngles.z;
-            LeftArrowIsClicked = false;
+            RotateToLeft = false;
         }
 
         if (IsRotateLeft == true)
