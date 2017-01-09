@@ -10,12 +10,12 @@ public class StageUIController : MonoBehaviour
 
     public void NextStage()
     {
-        StageInfo.GetComponent<RectTransform>().position = new Vector3(StageInfo.GetComponent<RectTransform>().position.x - 1080, StageInfo.GetComponent<RectTransform>().position.y, 0);
+        StageInfo.GetComponent<RectTransform>().anchoredPosition = new Vector2(StageInfo.GetComponent<RectTransform>().anchoredPosition.x - 1080, StageInfo.GetComponent<RectTransform>().anchoredPosition.y);
     }
 
     public void PriorStage()
     {
-        StageInfo.GetComponent<RectTransform>().position = new Vector3(StageInfo.GetComponent<RectTransform>().position.x + 1080, StageInfo.GetComponent<RectTransform>().position.y, 0);
+        StageInfo.GetComponent<RectTransform>().anchoredPosition = new Vector2(StageInfo.GetComponent<RectTransform>().anchoredPosition.x + 1080, StageInfo.GetComponent<RectTransform>().anchoredPosition.y);
     }
 
     public void GoToGameScene(string SceneName)
