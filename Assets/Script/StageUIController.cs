@@ -28,11 +28,10 @@ public class StageUIController : MonoBehaviour
     {
         NowTime = NowTime + Time.deltaTime;
         FlowTime = NowTime - ButtonClickedTime;
-        Debug.Log (FlowTime);
 
         if (GoToNextMap == true)
         {
-            StageInfo.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (StageInfo.GetComponent<RectTransform> ().anchoredPosition.x - 49 * FlowTime, StageInfo.GetComponent<RectTransform> ().anchoredPosition.y);
+            StageInfo.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (StageInfo.GetComponent<RectTransform> ().anchoredPosition.x - 40 * FlowTime, StageInfo.GetComponent<RectTransform> ().anchoredPosition.y);
             if (FlowTime >= 1f)
             {
                 GoToNextMap = false;
@@ -41,7 +40,7 @@ public class StageUIController : MonoBehaviour
         }
         else if (GoToPriorMap == true)
         {
-            StageInfo.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (StageInfo.GetComponent<RectTransform> ().anchoredPosition.x + 49 * FlowTime, StageInfo.GetComponent<RectTransform> ().anchoredPosition.y);
+            StageInfo.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (StageInfo.GetComponent<RectTransform> ().anchoredPosition.x + 40 * FlowTime, StageInfo.GetComponent<RectTransform> ().anchoredPosition.y);
             if (FlowTime >= 1f)
             {
                 GoToPriorMap = false;
