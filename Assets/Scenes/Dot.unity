@@ -1285,9 +1285,9 @@ MonoBehaviour:
   - {fileID: 1078674633}
   - {fileID: 1526259883}
   Base: {fileID: 1433454971}
-  PauseUI: {fileID: 0}
-  SwipeSensitivityButton: {fileID: 0}
-  BlockCreateSensitivityButton: {fileID: 0}
+  PauseUI: {fileID: 1768946276}
+  SwipeSensitivityButton: {fileID: 2141502964}
+  BlockCreateSensitivityButton: {fileID: 859689044}
 --- !u!4 &345368452
 Transform:
   m_ObjectHideFlags: 0

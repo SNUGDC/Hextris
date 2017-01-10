@@ -151,13 +151,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3cbe99cbb98483740b0f9e1defc7c833, type: 3}
   - {fileID: 21300000, guid: 2c0aaa163d0d84646a2f92110cf2ac22, type: 3}
   NextBlockImage:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1306936260}
+  - {fileID: 630520805}
+  - {fileID: 1845512953}
   Base: {fileID: 1433454971}
-  PauseUI: {fileID: 0}
-  SwipeSensitivityButton: {fileID: 0}
-  BlockCreateSensitivityButton: {fileID: 0}
+  PauseUI: {fileID: 1274067084}
+  SwipeSensitivityButton: {fileID: 1743034483}
+  BlockCreateSensitivityButton: {fileID: 1508267654}
 --- !u!4 &6409268
 Transform:
   m_ObjectHideFlags: 0
