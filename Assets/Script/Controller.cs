@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-    public GameObject Base;
-
+    private GameObject Base;
     private Vector3 MouseStartPos;
     private Vector3 MouseFinishPos;
     private Vector3 SwipeVector;
 
     private void Start()
     {
+        Base = GameObject.Find("Base");
     }
 
     private void Update()
