@@ -6,15 +6,17 @@ using UnityEngine.UI;
 public class MainUIController : MonoBehaviour
 {
     public Sprite[] Block;
-    public GameObject Base;
-
     public Image[] NextBlockImage;
 
     private int[] BlockOrder;
 
+    public GameObject Base;
+    public GameObject PauseUI;
+
     void Start()
     {
         BlockOrder = new int[3];
+        PauseUI.SetActive (false);
     }
 
     void Update()
@@ -25,5 +27,10 @@ public class MainUIController : MonoBehaviour
         {
             NextBlockImage [i].sprite = Block [BlockOrder [i]];
         }
+    }
+
+    public void Pause()
+    {
+        PauseUI.SetActive (true);
     }
 }
