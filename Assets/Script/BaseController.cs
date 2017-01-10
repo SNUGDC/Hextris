@@ -45,6 +45,7 @@ public class BaseController : MonoBehaviour
         IsRotateLeft = false;
         IsBlockCreated = false;
         CreateBlockSwitcher = 0;
+        PlayerPrefs.SetString("In Game State", "Play");
 
         BlockOrder [0] = Random.Range (0, 3);
         switch (BlockOrder [0])
@@ -93,24 +94,27 @@ public class BaseController : MonoBehaviour
 
     private void Update()
     {
-        GameTime = GameTime + Time.deltaTime;
-
-        RotateRight();
-        RotateLeft();
-        CreateBlocks();
-
-        if ((Input.GetKeyDown(KeyCode.DownArrow) || MoveBlockDownward) && IsRotateLeft == false && IsRotateRight == false)
+        if (PlayerPrefs.GetString("In Game State") == "Play")
         {
-            if (CheckBeforeMove () == true)
-                MoveBlocks ();
-            else
+            GameTime = GameTime + Time.deltaTime;
+
+            RotateRight();
+            RotateLeft();
+            CreateBlocks();
+
+            if ((Input.GetKeyDown(KeyCode.DownArrow) || MoveBlockDownward) && IsRotateLeft == false && IsRotateRight == false)
             {
-                TileColoring ();
-                DestroyBlock ();
-                ClearBlock();
-                IsBlockCreated = false;
+                if (CheckBeforeMove() == true)
+                    MoveBlocks();
+                else
+                {
+                    TileColoring();
+                    DestroyBlock();
+                    ClearBlock();
+                    IsBlockCreated = false;
+                }
+                MoveBlockDownward = false;
             }
-            MoveBlockDownward = false;
         }
     }
 

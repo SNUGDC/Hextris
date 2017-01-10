@@ -33,24 +33,24 @@ public class Controller : MonoBehaviour
 
     private Command? swipeToCommand(Vector3 swipeVector)
     {
-        if (Mathf.Abs(SwipeVector.x) < 50 && Mathf.Abs(SwipeVector.y) < 50)
+        if (Mathf.Abs(SwipeVector.x) < PlayerPrefs.GetFloat("Create Block Sensitivity") && Mathf.Abs(SwipeVector.y) < PlayerPrefs.GetFloat("Create Block Sensitivity"))
         {
             return Command.CREATE;
         }
         if (Mathf.Abs(SwipeVector.x) >= Mathf.Abs(SwipeVector.y))
         {
-            if (SwipeVector.x > 250f)
+            if (SwipeVector.x > PlayerPrefs.GetFloat("Swipe Sensitivity"))
             {
                 return Command.RIGHT;
             }
-            if (SwipeVector.x < -250f)
+            if (SwipeVector.x < -PlayerPrefs.GetFloat("Swipe Sensitivity"))
             {
                 return Command.LEFT;
             }
         }
         else
         {
-            if (SwipeVector.y < -250f)
+            if (SwipeVector.y < -PlayerPrefs.GetFloat("Swipe Sensitivity"))
             {
                 return Command.DOWN;
             }
@@ -60,30 +60,32 @@ public class Controller : MonoBehaviour
 
     private void OnMouseUp()
     {
-        MouseFinishPos = Input.mousePosition;
-        SwipeVector = MouseFinishPos - MouseStartPos;
-        Debug.Log(SwipeVector);
-
-        Command? command = swipeToCommand(SwipeVector);
-        if (command.HasValue)
+        if (PlayerPrefs.GetString("In Game State") == "Play")
         {
-            switch (command.Value)
+            MouseFinishPos = Input.mousePosition;
+            SwipeVector = MouseFinishPos - MouseStartPos;
+
+            Command? command = swipeToCommand(SwipeVector);
+            if (command.HasValue)
             {
-                case Command.RIGHT:
-                    Base.GetComponent<BaseController>().RotateToRight = true;
-                    break;
-                case Command.LEFT:
-                    Base.GetComponent<BaseController>().RotateToLeft = true;
-                    break;
-                case Command.DOWN:
-                    Base.GetComponent<BaseController>().MoveBlockDownward = true;
-                    break;
-                case Command.CREATE:
-                    Base.GetComponent<BaseController>().CreateBlock = true;
-                    break;
-                default:
-                    Debug.Log("Something is Worng at Command");
-                    break;
+                switch (command.Value)
+                {
+                    case Command.RIGHT:
+                        Base.GetComponent<BaseController>().RotateToRight = true;
+                        break;
+                    case Command.LEFT:
+                        Base.GetComponent<BaseController>().RotateToLeft = true;
+                        break;
+                    case Command.DOWN:
+                        Base.GetComponent<BaseController>().MoveBlockDownward = true;
+                        break;
+                    case Command.CREATE:
+                        Base.GetComponent<BaseController>().CreateBlock = true;
+                        break;
+                    default:
+                        Debug.Log("Something is Worng at Command");
+                        break;
+                }
             }
         }
     }
