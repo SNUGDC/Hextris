@@ -19,13 +19,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Credit.unity
   - enabled: 1
     path: Assets/Scenes/Basic.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Cant Go.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dot.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Double.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HeOS.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Reed.unity
