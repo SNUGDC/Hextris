@@ -108,6 +108,7 @@ public class BaseController : MonoBehaviour
             {
                 if (GameTime - LastMovementTime < ForcedMovementDelay)
                 {
+                    if ((Input.GetKeyUp(KeyCode.C) || CreateBlock) && IsBlockCreated == false)
                     {
                         CreateBlocks();
                     }
