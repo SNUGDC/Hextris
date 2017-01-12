@@ -19,12 +19,12 @@ public class BaseController : MonoBehaviour
     public GameObject CreatedBlocks;
     public GameObject[] Tile;
     public bool IsBlockCreated;
-
     public bool RotateToRight;
     public bool RotateToLeft;
     public bool MoveBlockDownward;
     public bool CreateBlock;
     public int[] BlockOrder;
+    public int SpecialBlockNumber;
 
     private float GameTime;
     private float RotateStartTime;
@@ -46,6 +46,7 @@ public class BaseController : MonoBehaviour
         GameTime = 0;
         RotatingSpeed = 0.5f;
         RotateStartTime = 0;
+        SpecialBlockNumber = 0;
         IsRotateRight = false;
         IsRotateLeft = false;
         IsBlockCreated = false;
@@ -108,7 +109,7 @@ public class BaseController : MonoBehaviour
 
             if (IsRotateLeft == false && IsRotateRight == false)
             {
-                if(Input.GetKeyUp(KeyCode.C) || CreateBlock)
+                if (Input.GetKeyUp(KeyCode.C) || CreateBlock)
                 {
                     if (IsBlockCreated == true)
                     {
@@ -144,6 +145,12 @@ public class BaseController : MonoBehaviour
                             IsBlockCreated = false;
                         }
                     }
+                }
+
+                if (SpecialBlockNumber != 0)
+                {
+                    if(IsBlockCreated == true)
+                        CreateSpecialBlock();
                 }
             }
         }
@@ -300,6 +307,38 @@ public class BaseController : MonoBehaviour
         CreateBlocksOrder();
         IsBlockCreated = true;
         CreateBlock = false;
+    }
+
+    private void CreateSpecialBlock()
+    {
+        Debug.Log("함수가 시작함");
+
+        Destroy(CreatedBlocks);
+
+        string ControlBlockName;
+
+        switch (SpecialBlockNumber)
+        {
+            case 1:
+                Instantiate(Blocks[18], this.transform, false);
+                ControlBlockName = "100t(Clone)";
+                CreatedBlocks = GameObject.Find(ControlBlockName);
+                break;
+            case 2:
+                Instantiate(Blocks[19], this.transform, false);
+                ControlBlockName = "Bomb(Clone)";
+                CreatedBlocks = GameObject.Find(ControlBlockName);
+                break;
+            default:
+                break;
+        }
+
+        for (int i = 0; i <= 2; i++)
+        {
+            ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
+        }
+
+        SpecialBlockNumber = 0;
     }
 
     private void MoveBlocks()

@@ -101,4 +101,16 @@ public class MainUIController : MonoBehaviour
         CreateBlockSensitivityButton[Sensitivity].color = new Color(1, 1, 1, 1);
         PlayerPrefs.SetFloat("Create Block Sensitivity", Sensitivity * 10);
     }
+
+    public void BombButtonIsClicked()
+    {
+        Base.GetComponent<BaseController>().SpecialBlockNumber = 2;
+        Debug.Log("숫자를 바꾸긴 함");
+    }
+
+    public void SinkerButtonIsClicked()
+    {
+        Base.GetComponent<BaseController>().SpecialBlockNumber = 1;
+        Debug.Log("숫자를 바꾸긴 함");
+    }
 }
