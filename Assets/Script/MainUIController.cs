@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class MainUIController : MonoBehaviour
 {
     public Sprite[] Block;
-    public Sprite SwipeSensitivityButtonImage;
-    public Sprite CreateBlockSensitivityButtonImage;
 
     private GameObject Base;
     private GameObject PausePanel;
