@@ -25,8 +25,10 @@ public class BaseController : MonoBehaviour
     public bool MoveBlockDownward;
     public bool CreateBlock;
     public int[] BlockOrder;
+    public float ForcedMovementDelay;
 
     private float GameTime;
+    private float LastMovementTime;
     private float RotateStartTime;
     private float StartRotateAngle;
     private float RotatingSpeed;
@@ -39,6 +41,7 @@ public class BaseController : MonoBehaviour
     private void Start()
     {
         GameTime = 0;
+        LastMovementTime = 0;
         RotatingSpeed = 0.5f;
         RotateStartTime = 0;
         IsRotateRight = false;
@@ -100,20 +103,31 @@ public class BaseController : MonoBehaviour
 
             RotateRight();
             RotateLeft();
-            CreateBlocks();
 
-            if ((Input.GetKeyDown(KeyCode.DownArrow) || MoveBlockDownward) && IsRotateLeft == false && IsRotateRight == false)
+            if (IsRotateLeft == false && IsRotateRight == false)
             {
-                if (CheckBeforeMove() == true)
-                    MoveBlocks();
+                if (GameTime - LastMovementTime < ForcedMovementDelay)
+                {
+                    {
+                        CreateBlocks();
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.DownArrow) || MoveBlockDownward)
+                    {
+                        WhenDownClicked();
+                    }
+                }
                 else
                 {
-                    TileColoring();
-                    DestroyBlock();
-                    ClearBlock();
-                    IsBlockCreated = false;
+                    if (IsBlockCreated == false)
+                    {
+                        CreateBlocks();
+                    }
+                    else
+                    {
+                        WhenDownClicked();
+                    }
                 }
-                MoveBlockDownward = false;
             }
         }
     }
@@ -237,41 +251,53 @@ public class BaseController : MonoBehaviour
 
     private void CreateBlocks()
     {
-        if ((Input.GetKeyUp(KeyCode.C) || CreateBlock) && IsRotateRight == false && IsRotateLeft == false && IsBlockCreated == false)
+        BlockNumber = BlockOrder[0];
+
+        switch (BlockNumber)
         {
-            BlockNumber = BlockOrder [0];
-
-            switch (BlockNumber)
-            {
-                case 0:
-                    BlockColor = 1;
-                    break;
-                case 1:
-                    BlockColor = 3;
-                    break;
-                case 2:
-                    BlockColor = 4;
-                    break;
-                default:
-                    Debug.Log ("Something Worng At Deciding Block Color");
-                    break;
-            }
-
-            BlockNumber = BlockNumber + 3 * ((int)transform.eulerAngles.z / 60);
-            Instantiate(Blocks[BlockNumber], this.transform, false);
-
-            string ControlBlockName = Blocks[BlockNumber].name + "(Clone)";
-            CreatedBlocks = GameObject.Find(ControlBlockName);
-
-            for (int i = 0; i <= 2; i++)
-            {
-                ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
-            }
-
-            CreateBlocksOrder ();
-            IsBlockCreated = true;
-            CreateBlock = false;
+            case 0:
+                BlockColor = 1;
+                break;
+            case 1:
+                BlockColor = 3;
+                break;
+            case 2:
+                BlockColor = 4;
+                break;
+            default:
+                Debug.Log("Something Worng At Deciding Block Color");
+                break;
         }
+
+        BlockNumber = BlockNumber + 3 * ((int)transform.eulerAngles.z / 60);
+        Instantiate(Blocks[BlockNumber], this.transform, false);
+
+        string ControlBlockName = Blocks[BlockNumber].name + "(Clone)";
+        CreatedBlocks = GameObject.Find(ControlBlockName);
+
+        for (int i = 0; i <= 2; i++)
+        {
+            ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
+        }
+
+        CreateBlocksOrder();
+        IsBlockCreated = true;
+        CreateBlock = false;
+        LastMovementTime = GameTime;
+    }
+
+    private void WhenDownClicked()
+    {
+        if (CheckBeforeMove() == true)
+            MoveBlocks();
+        else
+        {
+            TileColoring();
+            DestroyBlock();
+            ClearBlock();
+            IsBlockCreated = false;
+        }
+        MoveBlockDownward = false;
     }
 
     private void MoveBlocks()
@@ -282,6 +308,8 @@ public class BaseController : MonoBehaviour
             ControlBlock[1].transform.localPosition = ControlBlock[1].transform.localPosition + GravityVector ();
             ControlBlock[2].transform.localPosition = ControlBlock[2].transform.localPosition + GravityVector ();
         }
+
+        LastMovementTime = GameTime;
     }
 
     private Vector3 GravityVector()

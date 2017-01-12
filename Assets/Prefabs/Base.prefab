@@ -5708,6 +5708,7 @@ MonoBehaviour:
   MoveBlockDownward: 0
   CreateBlock: 0
   BlockOrder: 000000000000000000000000
+  ForcedMovementDelay: 1
 --- !u!212 &212011202693857976
 SpriteRenderer:
   m_ObjectHideFlags: 1
