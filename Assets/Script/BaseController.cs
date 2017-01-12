@@ -35,6 +35,11 @@ public class BaseController : MonoBehaviour
     private int BlockColor;
     private int BlockNumber;
     private int CreateBlockSwitcher;
+    private int IsSection3Full = 1;
+    private int IsSection4Full = 1;
+    private int IsSection5Full = 1;
+    private int IsSection6Full = 1;
+    private int IsSection7Full = 1;
 
     private void Start()
     {
@@ -111,7 +116,7 @@ public class BaseController : MonoBehaviour
                         {
                             TileColoring();
                             DestroyBlock();
-                            ClearBlock();
+                            CheckToClearBlock();
                             IsBlockCreated = false;
 
                             CreateBlocks();
@@ -135,7 +140,7 @@ public class BaseController : MonoBehaviour
                         {
                             TileColoring();
                             DestroyBlock();
-                            ClearBlock();
+                            CheckToClearBlock();
                             IsBlockCreated = false;
                         }
                     }
@@ -393,14 +398,8 @@ public class BaseController : MonoBehaviour
         Destroy (CreatedBlocks);
     }
 
-    private void ClearBlock()
+    private void CheckToClearBlock()
     {
-        int IsSection3Full = 1;
-        int IsSection4Full = 1;
-        int IsSection5Full = 1;
-        int IsSection6Full = 1;
-        int IsSection7Full = 1;
-
         for (int i = 0; i < 42; i++)
         {
             if (Section7[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
@@ -458,46 +457,6 @@ public class BaseController : MonoBehaviour
             else
             {
                 IsSection3Full = IsSection3Full * 0;
-            }
-        }
-
-        if (IsSection7Full == 1)
-        {
-            for (int i = 0; i < 42; i++)
-            {
-                Section7 [i].GetComponent<SpriteRenderer> ().sprite = ColorTile [5];
-            }
-
-            if (IsSection6Full == 1)
-            {
-                for (int i = 0; i < 36; i++)
-                {
-                    Section6[i].GetComponent<SpriteRenderer>().sprite = ColorTile [5];
-                }
-
-                if (IsSection5Full == 1)
-                {
-                    for (int i = 0; i < 30; i++)
-                    {
-                        Section5[i].GetComponent<SpriteRenderer>().sprite = ColorTile [5];
-                    }
-
-                    if (IsSection4Full == 1)
-                    {
-                        for (int i = 0; i < 24; i++)
-                        {
-                            Section4[i].GetComponent<SpriteRenderer>().sprite = ColorTile [5];
-                        }
-
-                        if (IsSection3Full == 1)
-                        {
-                            for (int i = 0; i < 18; i++)
-                            {
-                                Section3[i].GetComponent<SpriteRenderer>().sprite = ColorTile [5];
-                            }
-                        }
-                    }
-                }
             }
         }
     }

@@ -3996,7 +3996,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1049771429958578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4126871781172026}
@@ -5708,7 +5708,6 @@ MonoBehaviour:
   MoveBlockDownward: 0
   CreateBlock: 0
   BlockOrder: 000000000000000000000000
-  ForcedMovementDelay: 1
 --- !u!212 &212011202693857976
 SpriteRenderer:
   m_ObjectHideFlags: 1
