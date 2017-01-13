@@ -104,13 +104,13 @@ public class MainUIController : MonoBehaviour
 
     public void BombButtonIsClicked()
     {
-        Base.GetComponent<BaseController>().SpecialBlockNumber = 2;
-        Debug.Log("숫자를 바꾸긴 함");
+        if(Base.GetComponent<BaseController>().IsBlockCreated == true)
+            Base.GetComponent<BaseController>().SpecialBlockNumber = 2;
     }
 
     public void SinkerButtonIsClicked()
     {
-        Base.GetComponent<BaseController>().SpecialBlockNumber = 1;
-        Debug.Log("숫자를 바꾸긴 함");
+        if (Base.GetComponent<BaseController>().IsBlockCreated == true)
+            Base.GetComponent<BaseController>().SpecialBlockNumber = 1;
     }
 }
