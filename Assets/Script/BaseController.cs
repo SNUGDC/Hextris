@@ -374,6 +374,33 @@ public class BaseController : MonoBehaviour
                 }
                 break;
             case 2:
+                for (int i = 0; i < 169; i++)
+                {
+                    if (Tile[i].transform.localPosition == ControlBlock[0].transform.localPosition + new Vector3(0, -2.1f, 0))
+                    {
+                        Tile[i].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+                    }
+                    if (Tile[i].transform.localPosition == ControlBlock[0].transform.localPosition + new Vector3(0, 2.1f, 0))
+                    {
+                        Tile[i].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+                    }
+                    if (Tile[i].transform.localPosition == ControlBlock[0].transform.localPosition + new Vector3(-1.83f, -1.05f, 0))
+                    {
+                        Tile[i].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+                    }
+                    if (Tile[i].transform.localPosition == ControlBlock[0].transform.localPosition + new Vector3(-1.83f, 1.05f, 0))
+                    {
+                        Tile[i].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+                    }
+                    if (Tile[i].transform.localPosition == ControlBlock[0].transform.localPosition + new Vector3(1.83f, -1.05f, 0))
+                    {
+                        Tile[i].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+                    }
+                    if (Tile[i].transform.localPosition == ControlBlock[0].transform.localPosition + new Vector3(1.83f, 1.05f, 0))
+                    {
+                        Tile[i].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+                    }
+                }
                 break;
             default:
                 Debug.Log("Something is Wrong at Special Block");
