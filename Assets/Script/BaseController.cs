@@ -286,6 +286,8 @@ public class BaseController : MonoBehaviour
 
     private void CreateBlocks()
     {
+        SpecialBlock = 0;
+
         BlockNumber = BlockOrder[0];
 
         switch (BlockNumber)
