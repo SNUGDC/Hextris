@@ -37,11 +37,11 @@ public class BaseController : MonoBehaviour
     private int BlockNumber;
     private int CreateBlockSwitcher;
     private int SpecialBlock;
-    private int IsSection3Full = 1;
-    private int IsSection4Full = 1;
-    private int IsSection5Full = 1;
-    private int IsSection6Full = 1;
-    private int IsSection7Full = 1;
+    private bool IsSection3Full;
+    private bool IsSection4Full;
+    private bool IsSection5Full;
+    private bool IsSection6Full;
+    private bool IsSection7Full;
 
     private void Start()
     {
@@ -416,8 +416,9 @@ public class BaseController : MonoBehaviour
     private void Coloring()
     {
         TileColoring();
-        DestroyBlock();
+        DestroyCreatedBlock();
         CheckToClearBlock();
+        DestroyFullBlocks();
         IsBlockCreated = false;
     }
 
@@ -512,70 +513,177 @@ public class BaseController : MonoBehaviour
         }
     }
 
-    private void DestroyBlock()
+    private void DestroyCreatedBlock()
     {
         Destroy (CreatedBlocks);
     }
 
     private void CheckToClearBlock()
     {
+        IsSection3Full = false;
+        IsSection4Full = false;
+        IsSection5Full = false;
+        IsSection6Full = false;
+        IsSection7Full = false;
+
+
         for (int i = 0; i < 42; i++)
         {
-            if (Section7[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
+            if (Section7[i].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
             {
-                IsSection7Full = IsSection7Full * 1;
+                IsSection7Full = false;
+                return;
             }
             else
             {
-                IsSection7Full = IsSection7Full * 0;
+                IsSection7Full = true;
             }
         }
 
         for (int i = 0; i < 36; i++)
         {
-            if (Section6[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
+            if (Section6[i].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
             {
-                IsSection6Full = IsSection6Full * 1;
+                IsSection6Full = false;
+                return;
             }
             else
             {
-                IsSection6Full = IsSection6Full * 0;
+                IsSection6Full = true;
             }
         }
 
+
         for (int i = 0; i < 30; i++)
         {
-            if (Section5[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
+            if (Section5[i].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
             {
-                IsSection5Full = IsSection5Full * 1;
+                IsSection5Full = false;
+                return;
             }
             else
             {
-                IsSection5Full = IsSection5Full * 0;
+                IsSection5Full = true;
             }
         }
 
         for (int i = 0; i < 24; i++)
         {
-            if (Section4[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
+            if (Section4[i].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
             {
-                IsSection4Full = IsSection4Full * 1;
+                IsSection4Full = false;
+                return;
             }
             else
             {
-                IsSection4Full = IsSection4Full * 0;
+                IsSection4Full = true;
             }
         }
 
         for (int i = 0; i < 18; i++)
         {
-            if (Section3[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
+            if (Section3[i].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
             {
-                IsSection3Full = IsSection3Full * 1;
+                IsSection3Full = false;
+                return;
             }
             else
             {
-                IsSection3Full = IsSection3Full * 0;
+                IsSection3Full = true;
+            }
+        }
+    }
+
+
+    private void DestroyFullBlocks()
+    {
+        if (IsSection7Full)
+        {
+            for (int i = 0; i < 42; i++)
+            {
+                Section7[i].AddComponent<Rigidbody2D>();
+                Section7[i].GetComponent<Rigidbody2D>().gravityScale = 3;
+
+                float VelocityX;
+                float VelocityY;
+
+                VelocityX = Random.Range(-10, 10);
+                VelocityY = Random.Range(-10, 10);
+
+                Section7[i].GetComponent<SpriteRenderer>().sortingOrder = 1;
+                Section7[i].GetComponent<Rigidbody2D>().velocity = new Vector2(VelocityX, VelocityY);
+            }
+        }
+
+        if (IsSection6Full)
+        {
+            for (int i = 0; i < 36; i++)
+            {
+                Section6[i].AddComponent<Rigidbody2D>();
+                Section6[i].GetComponent<Rigidbody2D>().gravityScale = 3;
+
+                float VelocityX;
+                float VelocityY;
+
+                VelocityX = Random.Range(-10, 10);
+                VelocityY = Random.Range(-10, 10);
+
+                Section6[i].GetComponent<SpriteRenderer>().sortingOrder = 1;
+                Section6[i].GetComponent<Rigidbody2D>().velocity = new Vector2(VelocityX, VelocityY);
+            }
+        }
+
+        if (IsSection5Full)
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                Section5[i].AddComponent<Rigidbody2D>();
+                Section5[i].GetComponent<Rigidbody2D>().gravityScale = 3;
+
+                float VelocityX;
+                float VelocityY;
+
+                VelocityX = Random.Range(-10, 10);
+                VelocityY = Random.Range(-10, 10);
+
+                Section5[i].GetComponent<SpriteRenderer>().sortingOrder = 1;
+                Section5[i].GetComponent<Rigidbody2D>().velocity = new Vector2(VelocityX, VelocityY);
+            }
+        }
+
+        if (IsSection4Full)
+        {
+            for (int i = 0; i < 24; i++)
+            {
+                Section4[i].AddComponent<Rigidbody2D>();
+                Section4[i].GetComponent<Rigidbody2D>().gravityScale = 3;
+
+                float VelocityX;
+                float VelocityY;
+
+                VelocityX = Random.Range(-10, 10);
+                VelocityY = Random.Range(-10, 10);
+
+                Section4[i].GetComponent<SpriteRenderer>().sortingOrder = 1;
+                Section4[i].GetComponent<Rigidbody2D>().velocity = new Vector2(VelocityX, VelocityY);
+            }
+        }
+
+        if (IsSection3Full)
+        {
+            for (int i = 0; i < 18; i++)
+            {
+                Section3[i].AddComponent<Rigidbody2D>();
+                Section3[i].GetComponent<Rigidbody2D>().gravityScale = 3;
+
+                float VelocityX;
+                float VelocityY;
+
+                VelocityX = Random.Range(-10, 10);
+                VelocityY = Random.Range(-10, 10);
+
+                Section3[i].GetComponent<SpriteRenderer>().sortingOrder = 1;
+                Section3[i].GetComponent<Rigidbody2D>().velocity = new Vector2(VelocityX, VelocityY);
             }
         }
     }
