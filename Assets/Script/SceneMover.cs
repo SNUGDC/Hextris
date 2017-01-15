@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartController : MonoBehaviour
+public class SceneMover : MonoBehaviour
 {
     public void MoveScene(string SceneName)
     {
