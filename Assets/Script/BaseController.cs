@@ -594,7 +594,6 @@ public class BaseController : MonoBehaviour
         }
     }
 
-
     private void DestroyFullBlocks()
     {
         if (IsSection7Full)
@@ -684,6 +683,14 @@ public class BaseController : MonoBehaviour
 
                 Section3[i].GetComponent<SpriteRenderer>().sortingOrder = 1;
                 Section3[i].GetComponent<Rigidbody2D>().velocity = new Vector2(VelocityX, VelocityY);
+            }
+        }
+
+        for (int i = 0; i < 169; i++)
+        {
+            if (Mathf.Abs(Tile[i].transform.position.y) > 200f)
+            {
+                Destroy(Tile[i]);
             }
         }
     }
