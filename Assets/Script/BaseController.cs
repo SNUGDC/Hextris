@@ -293,13 +293,13 @@ public class BaseController : MonoBehaviour
         switch (BlockNumber)
         {
             case 0:
-                BlockColor = 1;
+                BlockColor = (3 * PlayerPrefs.GetInt("Skin Number")) + 1;
                 break;
             case 1:
-                BlockColor = 2;
+                BlockColor = (3 * PlayerPrefs.GetInt("Skin Number")) + 2;
                 break;
             case 2:
-                BlockColor = 3;
+                BlockColor = (3 * PlayerPrefs.GetInt("Skin Number")) + 3;
                 break;
             default:
                 Debug.Log("Something Worng At Deciding Block Color");
@@ -315,6 +315,7 @@ public class BaseController : MonoBehaviour
         for (int i = 0; i <= 2; i++)
         {
             ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
+            ControlBlock[i].GetComponent<SpriteRenderer>().sprite = ColorTile[BlockColor];  
         }
 
         CreateBlocksOrder();
