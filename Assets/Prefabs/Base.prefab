@@ -5504,10 +5504,11 @@ MonoBehaviour:
   ColorTile:
   - {fileID: 21300000, guid: e29ffcd3e4375e440a0be4b7136b237d, type: 3}
   - {fileID: 21300000, guid: 30055b4b60ecd1e44940915171013318, type: 3}
-  - {fileID: 21300000, guid: 643ac8c7c67c6554c9ac619ecfa58f42, type: 3}
   - {fileID: 21300000, guid: 6468a6611dab6d54a893e0b264b0bab7, type: 3}
   - {fileID: 21300000, guid: 08add54a978d88e40949eb6fb02c50dc, type: 3}
-  - {fileID: 21300000, guid: f3c645cebb8b2c140bf51948b2e2c0db, type: 3}
+  - {fileID: 21300000, guid: 7c501f76ad6814e4d9a400da2dd8650d, type: 3}
+  - {fileID: 21300000, guid: baf43997aae9d1b4d895472d2f488a22, type: 3}
+  - {fileID: 21300000, guid: 773a821ce31da674bbf56455b5372d64, type: 3}
   Blocks:
   - {fileID: 1912540894202798, guid: 3e8c811213c7bed479bfb64531f3c7dc, type: 2}
   - {fileID: 1863095336448790, guid: 9b3d85c68a77aba4eb71341baa8620d4, type: 2}
@@ -5710,6 +5711,7 @@ MonoBehaviour:
   MoveBlockDownward: 0
   CreateBlock: 0
   BlockOrder: 000000000000000000000000
+  SpecialBlockNumber: 0
 --- !u!212 &212011202693857976
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -296,10 +296,10 @@ public class BaseController : MonoBehaviour
                 BlockColor = 1;
                 break;
             case 1:
-                BlockColor = 3;
+                BlockColor = 2;
                 break;
             case 2:
-                BlockColor = 4;
+                BlockColor = 3;
                 break;
             default:
                 Debug.Log("Something Worng At Deciding Block Color");

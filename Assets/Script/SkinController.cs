@@ -58,4 +58,10 @@ public class SkinController : MonoBehaviour
             WhatSkinShow = WhatSkinShow - 1;
         }
     }
+
+    public void SelectSkin()
+    {
+        SkinNumber = WhatSkinShow;
+        PlayerPrefs.SetInt("Skin Number", SkinNumber);
+    }
 }
