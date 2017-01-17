@@ -33,24 +33,24 @@ public class Controller : MonoBehaviour
 
     private Command? swipeToCommand(Vector3 swipeVector)
     {
-        if (Mathf.Abs(SwipeVector.x) < PlayerPrefs.GetFloat("Create Block Sensitivity") && Mathf.Abs(SwipeVector.y) < PlayerPrefs.GetFloat("Create Block Sensitivity"))
+        if (Mathf.Abs(SwipeVector.x) < 50f && Mathf.Abs(SwipeVector.y) < 50f)
         {
             return Command.CREATE;
         }
         if (Mathf.Abs(SwipeVector.x) >= Mathf.Abs(SwipeVector.y))
         {
-            if (SwipeVector.x > PlayerPrefs.GetFloat("Swipe Sensitivity"))
+            if (SwipeVector.x > 200f)
             {
                 return Command.RIGHT;
             }
-            if (SwipeVector.x < -PlayerPrefs.GetFloat("Swipe Sensitivity"))
+            if (SwipeVector.x < -200f)
             {
                 return Command.LEFT;
             }
         }
         else
         {
-            if (SwipeVector.y < -PlayerPrefs.GetFloat("Swipe Sensitivity"))
+            if (SwipeVector.y < -200f)
             {
                 return Command.DOWN;
             }
