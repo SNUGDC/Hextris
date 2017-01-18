@@ -11,7 +11,6 @@ public class BaseController : MonoBehaviour
     public GameObject[] Section4;
     public GameObject[] Section5;
     public GameObject[] Section6;
-    public GameObject[] Section7;
     public Sprite[] ColorTile;
     public GameObject[] Blocks;
     public GameObject[] ControlBlock;
@@ -41,7 +40,6 @@ public class BaseController : MonoBehaviour
     private bool IsSection4Full;
     private bool IsSection5Full;
     private bool IsSection6Full;
-    private bool IsSection7Full;
 
     private void Start()
     {
@@ -364,7 +362,7 @@ public class BaseController : MonoBehaviour
 
                 while (DeletedAllBlock == false)
                 {
-                    for (int i = 0; i < 169; i++)
+                    for (int i = 0; i < Tile.Length; i++)
                     {
                         if (Tile[i].transform.localPosition == ControlBlock[0].transform.localPosition + j * GravityVector())
                         {
@@ -377,7 +375,7 @@ public class BaseController : MonoBehaviour
                 }
                 break;
             case 2:
-                for (int i = 0; i < 169; i++)
+                for (int i = 0; i < Tile.Length; i++)
                 {
                     if (Tile[i].transform.localPosition == ControlBlock[0].transform.localPosition + new Vector3(0, -2.1f, 0))
                     {
@@ -465,7 +463,7 @@ public class BaseController : MonoBehaviour
         bool SecondBlockCanMove = false;
         bool ThirdBlockCanMove = false;
 
-        for (int i = 0; i < 169; i++)
+        for (int i = 0; i < Tile.Length; i++)
         {
             if (Tile [i].transform.localPosition == ControlBlock [0].transform.localPosition + GravityVector ())
             {
@@ -504,7 +502,7 @@ public class BaseController : MonoBehaviour
     {
         for (int j = 0; j < 3; j++)
         {
-            for (int i = 0; i < 169; i++)
+            for (int i = 0; i < Tile.Length; i++)
             {
                 if (Tile [i].transform.localPosition == ControlBlock [j].transform.localPosition)
                 {
@@ -525,21 +523,6 @@ public class BaseController : MonoBehaviour
         IsSection4Full = false;
         IsSection5Full = false;
         IsSection6Full = false;
-        IsSection7Full = false;
-
-
-        for (int i = 0; i < 42; i++)
-        {
-            if (Section7[i].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
-            {
-                IsSection7Full = false;
-                return;
-            }
-            else
-            {
-                IsSection7Full = true;
-            }
-        }
 
         for (int i = 0; i < 36; i++)
         {
@@ -597,24 +580,6 @@ public class BaseController : MonoBehaviour
 
     private void DestroyFullBlocks()
     {
-        if (IsSection7Full)
-        {
-            for (int i = 0; i < 42; i++)
-            {
-                Section7[i].AddComponent<Rigidbody2D>();
-                Section7[i].GetComponent<Rigidbody2D>().gravityScale = 3;
-
-                float VelocityX;
-                float VelocityY;
-
-                VelocityX = Random.Range(-10, 10);
-                VelocityY = Random.Range(-10, 10);
-
-                Section7[i].GetComponent<SpriteRenderer>().sortingOrder = 1;
-                Section7[i].GetComponent<Rigidbody2D>().velocity = new Vector2(VelocityX, VelocityY);
-            }
-        }
-
         if (IsSection6Full)
         {
             for (int i = 0; i < 36; i++)
@@ -687,11 +652,11 @@ public class BaseController : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < 169; i++)
+        for (int i = 0; i < Tile.Length; i++)
         {
             if (Mathf.Abs(Tile[i].transform.position.y) > 200f)
             {
-                Destroy(Tile[i]);
+                Destroy(Tile[i].GetComponent<Rigidbody2D>());
             }
         }
     }
