@@ -12,6 +12,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Start.unity
   - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+  - enabled: 1
     path: Assets/Scenes/Stage Select.unity
   - enabled: 1
     path: Assets/Scenes/Skin.unity
