@@ -2,42 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StageUIController : MonoBehaviour
 {
     public string[] StageName;
+    public Sprite[] MiniMapImage;
+    public Sprite[] MapNameImage;
+    public Image MiniMap;
+    public Image MapName;
 
-    private Vector2 NowRectPosition;
-    private bool GoToNextMap;
-    private bool GoToPriorMap;
+    private int MapNumber;
 
     private void Start()
     {
-        GoToNextMap = false;
-        GoToPriorMap = false;
+        MapNumber = 0;
     }
 
     private void Update()
     {
-
-        if (GoToNextMap == true)
-        {
-            
-        }
-        else if (GoToPriorMap == true)
-        {
-            
-        }
+        MiniMap.sprite = MiniMapImage [MapNumber];
+        MapName.sprite = MapNameImage [MapNumber];
     }
 
     public void NextStage()
     {
-        GoToNextMap = true;
+        if(MapNumber + 1 < StageName.Length)
+            MapNumber = MapNumber + 1;
     }
 
     public void PriorStage()
     {
-        GoToPriorMap = true;
+        if(MapNumber - 1 >= 0)
+            MapNumber = MapNumber - 1;
     }
 
     public void GoToGameScene(string SceneName)
