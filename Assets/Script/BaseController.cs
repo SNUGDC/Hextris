@@ -24,9 +24,9 @@ public class BaseController : MonoBehaviour
     public bool CreateBlock;
     public int[] BlockOrder;
     public int SpecialBlockNumber;
+    public float GameTime;
 
     private string ControlBlockName;
-    private float GameTime;
     private float RotateStartTime;
     private float StartRotateAngle;
     private float RotatingSpeed;
