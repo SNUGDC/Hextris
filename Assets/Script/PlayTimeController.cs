@@ -9,7 +9,8 @@ public class PlayTimeController : MonoBehaviour
     public Image[] TimeImage;
 
     private GameObject Base;
-    private float GameTime;
+    private float GameTime_float;
+    private int GameTime_int;
     private int[] PlayTimeNumber;
 
     private void Start()
@@ -21,8 +22,8 @@ public class PlayTimeController : MonoBehaviour
 
     private void Update()
     {
-        GameTime = Base.GetComponent<BaseController> ().GameTime;
+        GameTime_float = Base.GetComponent<BaseController> ().GameTime;
 
-
+        GameTime_int = (int)GameTime_float;
     }
 }
