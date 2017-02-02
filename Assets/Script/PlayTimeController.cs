@@ -22,8 +22,29 @@ public class PlayTimeController : MonoBehaviour
 
     private void Update()
     {
-        GameTime_float = Base.GetComponent<BaseController> ().GameTime;
+
+    }
+
+    public void Pause()
+    {
+        GameTime_float = Base.GetComponent<BaseController>().GameTime;
 
         GameTime_int = (int)GameTime_float;
+        PlayTimeNumber[0] = GameTime_int / 60;
+
+        GameTime_int = GameTime_int - PlayTimeNumber[0] * 60;
+        PlayTimeNumber[1] = GameTime_int / 10;
+        PlayTimeNumber[2] = GameTime_int % 10;
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                if (PlayTimeNumber[i] == j)
+                {
+                    TimeImage[i].sprite = Number[j];
+                }
+            }
+        }
     }
 }

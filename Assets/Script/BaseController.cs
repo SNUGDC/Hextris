@@ -649,14 +649,22 @@ public class BaseController : MonoBehaviour
 
                 Section3[i].GetComponent<SpriteRenderer>().sortingOrder = 1;
                 Section3[i].GetComponent<Rigidbody2D>().velocity = new Vector2(VelocityX, VelocityY);
-            }
-        }
 
-        for (int i = 0; i < Tile.Length; i++)
-        {
-            if (Mathf.Abs(Tile[i].transform.position.y) > 200f)
+                Debug.Log("Game Finish");
+            }
+
+            if (PlayerPrefs.HasKey("Basic Best"))
             {
-                Destroy(Tile[i].GetComponent<Rigidbody2D>());
+                float BasicBest = PlayerPrefs.GetFloat("Basic Best");
+
+                if (BasicBest > GameTime)
+                {
+                    PlayerPrefs.SetFloat("Basic Best", GameTime);
+                }
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("Basic Best", GameTime);
             }
         }
     }

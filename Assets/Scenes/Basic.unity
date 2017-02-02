@@ -5169,6 +5169,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 449065847}
     m_Modifications:
+    - target: {fileID: 114483926795422302, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 224477732064822816, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -5264,6 +5269,31 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1406849821}
+    - target: {fileID: 114483926795422302, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114483926795422302, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114483926795422302, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 22929513}
+    - target: {fileID: 114483926795422302, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Pause
+      objectReference: {fileID: 0}
+    - target: {fileID: 114483926795422302, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55c9e1b279454db4a8ebb7cba1e853c8, type: 2}
   m_IsPrefabParent: 0
@@ -8231,6 +8261,7 @@ MonoBehaviour:
   CreateBlock: 0
   BlockOrder: 000000000000000000000000
   SpecialBlockNumber: 0
+  GameTime: 0
 --- !u!4 &1553001739
 Transform:
   m_ObjectHideFlags: 0
