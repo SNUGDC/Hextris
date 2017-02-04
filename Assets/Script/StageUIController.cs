@@ -37,8 +37,18 @@ public class StageUIController : MonoBehaviour
             MapNumber = MapNumber - 1;
     }
 
-    public void GoToGameScene(string SceneName)
+    public void GoToGameScene()
     {
-        SceneManager.LoadScene(SceneName);
+        switch (MapNumber)
+        {
+            case 0:
+                SceneManager.LoadScene("Basic");
+                break;
+            case 1:
+                SceneManager.LoadScene("Dot");
+                break;
+            default:
+                break;
+        }
     }
 }
