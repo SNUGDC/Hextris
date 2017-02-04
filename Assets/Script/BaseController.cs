@@ -34,10 +34,10 @@ public class BaseController : MonoBehaviour
     private int BlockNumber;
     private int CreateBlockSwitcher;
     private int SpecialBlock;
-    private bool IsSection1Full;
-    private bool IsSection2Full;
-    private bool IsSection3Full;
-    private bool IsSection4Full;
+    private int IsSection1Full;
+    private int IsSection2Full;
+    private int IsSection3Full;
+    private int IsSection4Full;
 
     private void Start()
     {
@@ -415,7 +415,7 @@ public class BaseController : MonoBehaviour
         TileColoring();
         DestroyCreatedBlock();
         CheckToClearBlock();
-        DestroAndMoveBlocks();
+        DestroyAndMoveBlocks();
         IsBlockCreated = false;
     }
 
@@ -517,67 +517,47 @@ public class BaseController : MonoBehaviour
 
     private void CheckToClearBlock()
     {
-        IsSection1Full = false;
-        IsSection2Full = false;
-        IsSection3Full = false;
-        IsSection4Full = false;
+        IsSection1Full = 6;
+        IsSection2Full = 12;
+        IsSection3Full = 18;
+        IsSection4Full = 24;
 
         for (int i = 0; i < 24; i++)
         {
-            if (Section4[i].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+            if (Section4[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
             {
-                IsSection4Full = false;
-                return;
-            }
-            else
-            {
-                IsSection4Full = true;
+                IsSection4Full = IsSection4Full - 1;
             }
         }
 
         for (int i = 0; i < 18; i++)
         {
-            if (Section3[i].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+            if (Section3[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
             {
-                IsSection3Full = false;
-                return;
-            }
-            else
-            {
-                IsSection3Full = true;
+                IsSection3Full = IsSection3Full - 1;
             }
         }
 
         for (int i = 0; i < 12; i++)
         {
-            if (Section2[i].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+            if (Section2[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
             {
-                IsSection2Full = false;
-                return;
-            }
-            else
-            {
-                IsSection2Full = true;
+                IsSection2Full = IsSection2Full - 1;
             }
         }
 
         for (int i = 0; i < 6; i++)
         {
-            if (Section1[i].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+            if (Section1[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
             {
-                IsSection1Full = false;
-                return;
-            }
-            else
-            {
-                IsSection1Full = true;
+                IsSection1Full = IsSection1Full - 1;
             }
         }
     }
 
-    private void DestroAndMoveBlocks()
+    private void DestroyAndMoveBlocks()
     {
-        if (IsSection4Full == true)
+        if (IsSection4Full == 0)
         {
             for (int i = 0; i < 24; i++)
             {
@@ -637,7 +617,7 @@ public class BaseController : MonoBehaviour
             MoveBlockAtoB (0, 6);
         }
 
-        if (IsSection3Full == true)
+        if (IsSection3Full == 0)
         {
             for (int i = 0; i < 18; i++)
             {
@@ -678,7 +658,7 @@ public class BaseController : MonoBehaviour
             MoveBlockAtoB (0, 6);
         }
 
-        if (IsSection2Full == true)
+        if (IsSection2Full == 0)
         {
             for (int i = 0; i < 12; i++)
             {
@@ -700,7 +680,7 @@ public class BaseController : MonoBehaviour
             MoveBlockAtoB (0, 6);
         }
 
-        if (IsSection1Full == true)
+        if (IsSection1Full == 0)
         {
             for (int i = 0; i < 6; i++)
             {
