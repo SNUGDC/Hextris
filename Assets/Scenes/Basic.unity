@@ -3314,7 +3314,7 @@ Prefab:
     - target: {fileID: 114483926795422302, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224477732064822816, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
         type: 2}
@@ -3414,7 +3414,7 @@ Prefab:
     - target: {fileID: 114483926795422302, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114483926795422302, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
         type: 2}
@@ -3425,11 +3425,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 22929513}
+      objectReference: {fileID: 1883673899}
     - target: {fileID: 114483926795422302, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Pause
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 114483926795422302, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
         type: 2}
@@ -3461,6 +3461,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114483926795422302, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55c9e1b279454db4a8ebb7cba1e853c8, type: 2}
@@ -5627,6 +5632,11 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1883673899 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1461468119274902, guid: 6eda17aa28d2b8240826aff5c168ef28,
+    type: 2}
+  m_PrefabInternal: {fileID: 766669539}
 --- !u!1 &1900212778
 GameObject:
   m_ObjectHideFlags: 0
@@ -6226,6 +6236,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1883673899}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
