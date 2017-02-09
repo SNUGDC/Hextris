@@ -1037,7 +1037,7 @@ Prefab:
     - target: {fileID: 224477732064822816, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224477732064822816, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
         type: 2}
@@ -1062,22 +1062,22 @@ Prefab:
     - target: {fileID: 224477732064822816, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.86322236
+      value: 0.7896214
       objectReference: {fileID: 0}
     - target: {fileID: 224477732064822816, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.92700005
+      value: 0.87756735
       objectReference: {fileID: 0}
     - target: {fileID: 224477732064822816, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.9710001
+      value: 0.9523451
       objectReference: {fileID: 0}
     - target: {fileID: 224477732064822816, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0.9794792
+      value: 0.957
       objectReference: {fileID: 0}
     - target: {fileID: 224477732064822816, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
         type: 2}
@@ -1123,6 +1123,26 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224477732064822816, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
     type: 2}
   m_PrefabInternal: {fileID: 1443869299}
+--- !u!1 &1443869301 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1878495991610096, guid: 55c9e1b279454db4a8ebb7cba1e853c8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1443869299}
+--- !u!111 &1443869302
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1443869301}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 646d4c17f1a9c7b498f5361992fb6964, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1453496135
 GameObject:
   m_ObjectHideFlags: 0
