@@ -692,21 +692,25 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 34489143293f6c04a9c249b43a55b78b, type: 3}
   - {fileID: 21300000, guid: 2212b1247a1d62c42a7be9fb3393d757, type: 3}
   - {fileID: 21300000, guid: 6ea48a45f48179d489cea936363508d8, type: 3}
+  - {fileID: 21300000, guid: f70efefd442f63341b1bf7771dc29af3, type: 3}
   SkinBlue:
   - {fileID: 21300000, guid: 30055b4b60ecd1e44940915171013318, type: 3}
   - {fileID: 21300000, guid: 7c501f76ad6814e4d9a400da2dd8650d, type: 3}
   - {fileID: 21300000, guid: 653082718740bda4cae848cadab57de1, type: 3}
   - {fileID: 21300000, guid: 1b38e92dec7c8ce4db34dd5dc7b9bbee, type: 3}
+  - {fileID: 21300000, guid: 92a9e7a0383dddc4f81a449319914009, type: 3}
   SkinRed:
   - {fileID: 21300000, guid: 6468a6611dab6d54a893e0b264b0bab7, type: 3}
   - {fileID: 21300000, guid: baf43997aae9d1b4d895472d2f488a22, type: 3}
   - {fileID: 21300000, guid: 6aa65bca23ed6a84f8b03f61ccab2d0e, type: 3}
   - {fileID: 21300000, guid: 4b9c415cadbfdd743afddb9bd7bd8eae, type: 3}
+  - {fileID: 21300000, guid: 3803976e903cbb742a81cf224400215a, type: 3}
   SkinYellow:
   - {fileID: 21300000, guid: 08add54a978d88e40949eb6fb02c50dc, type: 3}
   - {fileID: 21300000, guid: 773a821ce31da674bbf56455b5372d64, type: 3}
   - {fileID: 21300000, guid: 4a3aff5e75130a04583f293fbe9b51a6, type: 3}
   - {fileID: 21300000, guid: 97f141a927eeda648bc1cdbd1cc26017, type: 3}
+  - {fileID: 21300000, guid: 4232a419db9748b4aa47b2e531bb97d0, type: 3}
 --- !u!1 &1110508070
 GameObject:
   m_ObjectHideFlags: 0
