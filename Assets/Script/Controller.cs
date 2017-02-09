@@ -119,9 +119,13 @@ public class Controller : MonoBehaviour
                         break;
                     case Command.DOWN:
                         Base.GetComponent<BaseController>().MoveBlockDownward = true;
+                        ClockwiseRotateArrow.SetActive (false);
+                        CounterClockwiseRotateArrow.SetActive (false);
                         break;
                     case Command.CREATE:
                         Base.GetComponent<BaseController>().CreateBlock = true;
+                        ClockwiseRotateArrow.SetActive (false);
+                        CounterClockwiseRotateArrow.SetActive (false);
                         break;
                     default:
                         Debug.Log("Something is Worng at Command");
