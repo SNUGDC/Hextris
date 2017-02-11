@@ -161,6 +161,35 @@ public class BaseController : MonoBehaviour
                 }
             }
         }
+
+        if (PlayerPrefs.GetString ("In Game State") == "Pause")
+        {
+            bool SpreadFinish = false;
+
+            if (IsSection4Full == 0)
+            {
+                for (int i = 0; i < 24; i++)
+                {
+                    if (SpreadFinish == false
+                        && Mathf.Abs (Tile [i + 37].transform.position.x) > 30f
+                        && Mathf.Abs (Tile [i + 37].transform.position.y) > 30f)
+                    {
+                        SpreadFinish = true;
+                    }
+                    else if (SpreadFinish == true)
+                    {
+                        Tile [i + 37].GetComponent<Rigidbody2D> ().Sleep();
+                    }
+                }
+
+
+            }
+        }
+    }
+
+    private void GroundworkBeforeExpand(int MovingTileNumber, float X, float Y)
+    {
+        
     }
 
     private void RotateRight()
@@ -556,6 +585,81 @@ public class BaseController : MonoBehaviour
     }
 
     private void DestroyAndMoveBlocks()
+    {
+        ExplodeBlocks ();
+        //SpreadBlocks ();
+    }
+
+    private void ExplodeBlocks()
+    {
+        float XVelocity;
+        float YVelocity;
+        Rigidbody2D TileBody;
+
+        if (IsSection4Full == 0)
+        {
+            for (int i = 0; i < 24; i++)
+            {
+                Tile [i + 37].AddComponent<Rigidbody2D> ();
+                TileBody = Tile [i + 37].GetComponent<Rigidbody2D> ();
+
+                XVelocity = Random.Range (-10.0f, 10.0f);
+                YVelocity = Random.Range (-10.0f, 10.0f);
+                TileBody.gravityScale = 3;
+
+                TileBody.velocity = new Vector2 (XVelocity, YVelocity);
+            }
+
+            PlayerPrefs.SetString ("In Game State", "Pause");
+        }
+
+        if (IsSection3Full == 0)
+        {
+            for (int i = 0; i < 18; i++)
+            {
+                Tile [i + 37].AddComponent<Rigidbody2D> ();
+                TileBody = Tile [i + 37].GetComponent<Rigidbody2D> ();
+
+                XVelocity = Random.Range (-10.0f, 10.0f);
+                YVelocity = Random.Range (-10.0f, 10.0f);
+                TileBody.gravityScale = 3;
+
+                TileBody.velocity = new Vector2 (XVelocity, YVelocity);
+            }
+        }
+
+        if (IsSection2Full == 0)
+        {
+            for (int i = 0; i < 12; i++)
+            {
+                Tile [i + 37].AddComponent<Rigidbody2D> ();
+                TileBody = Tile [i + 37].GetComponent<Rigidbody2D> ();
+
+                XVelocity = Random.Range (-10.0f, 10.0f);
+                YVelocity = Random.Range (-10.0f, 10.0f);
+                TileBody.gravityScale = 3;
+
+                TileBody.velocity = new Vector2 (XVelocity, YVelocity);
+            }
+        }
+
+        if (IsSection1Full == 0)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                Tile [i + 37].AddComponent<Rigidbody2D> ();
+                TileBody = Tile [i + 37].GetComponent<Rigidbody2D> ();
+
+                XVelocity = Random.Range (-10.0f, 10.0f);
+                YVelocity = Random.Range (-10.0f, 10.0f);
+                TileBody.gravityScale = 3;
+
+                TileBody.velocity = new Vector2 (XVelocity, YVelocity);
+            }
+        }
+    }
+
+    private void SpreadBlocks()
     {
         if (IsSection4Full == 0)
         {
