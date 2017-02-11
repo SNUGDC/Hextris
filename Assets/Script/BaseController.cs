@@ -30,6 +30,7 @@ public class BaseController : MonoBehaviour
     private float RotatingSpeed;
     private bool IsRotateRight;
     private bool IsRotateLeft;
+    private bool SpreadFinish = false;
     private int BlockColor;
     private int BlockNumber;
     private int CreateBlockSwitcher;
@@ -164,8 +165,6 @@ public class BaseController : MonoBehaviour
 
         if (PlayerPrefs.GetString ("In Game State") == "Pause")
         {
-            bool SpreadFinish = false;
-
             if (IsSection4Full == 0)
             {
                 for (int i = 0; i < 24; i++)
@@ -178,18 +177,36 @@ public class BaseController : MonoBehaviour
                     }
                     else if (SpreadFinish == true)
                     {
-                        Tile [i + 37].GetComponent<Rigidbody2D> ().Sleep();
+                        Tile[i + 37].GetComponent<Rigidbody2D>().Sleep();
+                        Tile[i + 37].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
                     }
                 }
-
-
+                GroundworkBeforeExpand(37, 19);
+                GroundworkBeforeExpand(38, 20);
+                GroundworkBeforeExpand(41, 21);
+                GroundworkBeforeExpand(42, 22);
+                GroundworkBeforeExpand(44, 23);
+                GroundworkBeforeExpand(45, 24);
+                GroundworkBeforeExpand(46, 25);
+                GroundworkBeforeExpand(48, 26);
+                GroundworkBeforeExpand(49, 27);
+                GroundworkBeforeExpand(50, 28);
+                GroundworkBeforeExpand(51, 29);
+                GroundworkBeforeExpand(52, 30);
+                GroundworkBeforeExpand(53, 31);
+                GroundworkBeforeExpand(54, 32);
+                GroundworkBeforeExpand(56, 33);
+                GroundworkBeforeExpand(57, 34);
+                GroundworkBeforeExpand(58, 35);
+                GroundworkBeforeExpand(60, 36);
             }
         }
     }
 
-    private void GroundworkBeforeExpand(int MovingTileNumber, float X, float Y)
+    private void GroundworkBeforeExpand(int MovingTileNumber, int MovedTileNumber)
     {
-        
+        Tile[MovingTileNumber].transform.localPosition = Tile[MovedTileNumber].transform.localPosition;
+        Tile[MovingTileNumber].GetComponent<SpriteRenderer>().sprite = Tile[MovedTileNumber].GetComponent<SpriteRenderer>().sprite;
     }
 
     private void RotateRight()
