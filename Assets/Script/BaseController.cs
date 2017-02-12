@@ -24,13 +24,23 @@ public class BaseController : MonoBehaviour
     public int SpecialBlockNumber;
     public float GameTime;
 
+    private GameObject Section4Parent;
+    private GameObject Section3Parent;
+    private GameObject Section2Parent;
+    private GameObject Section1Parent;
     private string ControlBlockName;
     private float RotateStartTime;
     private float StartRotateAngle;
     private float RotatingSpeed;
+    private float ExplodeWaitingTime;
+    private float ExplodeStartTime;
+    private float ExplodeNowTime;
+    private bool IsExplodeStart = false;
+    private bool IsExplodeFinish;
+    private bool IsGroundwork4Finish = false;
+    private bool IsGroundwork3Finish = false;
     private bool IsRotateRight;
     private bool IsRotateLeft;
-    private bool SpreadFinish = false;
     private int BlockColor;
     private int BlockNumber;
     private int CreateBlockSwitcher;
@@ -46,10 +56,17 @@ public class BaseController : MonoBehaviour
         RotatingSpeed = 0.5f;
         RotateStartTime = 0;
         SpecialBlockNumber = 0;
+        ExplodeWaitingTime = 1f;
         IsRotateRight = false;
         IsRotateLeft = false;
         IsBlockCreated = false;
         CreateBlockSwitcher = 0;
+
+        Section1Parent = GameObject.Find ("Section 1");
+        Section2Parent = GameObject.Find ("Section 2");
+        Section3Parent = GameObject.Find ("Section 3");
+        Section4Parent = GameObject.Find ("Section 4");
+
         PlayerPrefs.SetString("In Game State", "Play");
 
         BlockOrder [0] = Random.Range (0, 3);
@@ -167,48 +184,106 @@ public class BaseController : MonoBehaviour
         {
             if (IsSection4Full == 0)
             {
-                for (int i = 0; i < 24; i++)
+/*                if (IsExplodeStart == false && IsExplodeFinish == false)
                 {
-                    if (SpreadFinish == false
-                        && Mathf.Abs (Tile [i + 37].transform.position.x) > 30f
-                        && Mathf.Abs (Tile [i + 37].transform.position.y) > 30f)
+                    ExplodeStartTime = GameTime;
+                    ExplodeNowTime = GameTime;
+                    IsExplodeStart = true;
+                    IsExplodeFinish = false;
+                }
+                else if (IsExplodeStart == true && IsExplodeFinish == false)
+                {
+                    ExplodeNowTime = ExplodeNowTime + Time.deltaTime;
+                    if (ExplodeNowTime - ExplodeStartTime >= ExplodeWaitingTime)
                     {
-                        SpreadFinish = true;
-                    }
-                    else if (SpreadFinish == true)
-                    {
-                        Tile[i + 37].GetComponent<Rigidbody2D>().Sleep();
-                        Tile[i + 37].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+                        IsExplodeFinish = true;
+                        IsExplodeStart = false;
                     }
                 }
-                GroundworkBeforeExpand(37, 19);
-                GroundworkBeforeExpand(38, 20);
-                GroundworkBeforeExpand(40, 21);
-                GroundworkBeforeExpand(41, 22);
-                GroundworkBeforeExpand(42, 23);
-                GroundworkBeforeExpand(44, 24);
-                GroundworkBeforeExpand(45, 25);
-                GroundworkBeforeExpand(46, 26);
-                GroundworkBeforeExpand(48, 27);
-                GroundworkBeforeExpand(49, 28);
-                GroundworkBeforeExpand(50, 29);
-                GroundworkBeforeExpand(52, 30);
-                GroundworkBeforeExpand(53, 31);
-                GroundworkBeforeExpand(54, 32);
-                GroundworkBeforeExpand(56, 33);
-                GroundworkBeforeExpand(57, 34);
-                GroundworkBeforeExpand(58, 35);
-                GroundworkBeforeExpand(60, 36);
+                else if (IsExplodeFinish == true && IsExplodeStart == false && IsGroundwork4Finish == false)
+                {
+                    for (int i = 0; i < 24; i++)
+                    {
+                        Destroy (Tile [i + 37].GetComponent<Rigidbody2D> ());
+                        Tile [i + 37].GetComponent<SpriteRenderer> ().sprite = ColorTile [0];
+                    }
 
+                    Section4SpriteAssignBeforeSpread ();
+                    Section4Parent.SetActive (false);
+                    IsGroundwork4Finish = true;
+                }
+                else if (IsGroundwork4Finish == true)
+                {
+                    Section4Parent.SetActive (true);
 
+                    if (IsGroundwork3Finish == false)
+                    {
+                        for (int i = 0; i < 18; i++)
+                        {
+                            Tile [i + 19].GetComponent<SpriteRenderer> ().sprite = ColorTile [0];
+                        }
+
+                        Section3SpriteAssignBeforeSpread ();
+                        Section3Parent.SetActive (false);
+                        IsGroundwork3Finish = true;
+                    }
+                    else if (IsGroundwork3Finish == true)
+                    {
+                        Section3Parent.SetActive (true);
+                    }
+                }*/
             }
         }
     }
 
-    private void GroundworkBeforeExpand(int MovingTileNumber, int MovedTileNumber)
+    private void GroundworkBeforeSpread(int MovingTileNumber, int MovedTileNumber)
     {
         //Tile[MovingTileNumber].transform.localPosition = Tile[MovedTileNumber].transform.localPosition;
         Tile[MovingTileNumber].GetComponent<SpriteRenderer>().sprite = Tile[MovedTileNumber].GetComponent<SpriteRenderer>().sprite;
+    }
+
+    private void Section4SpriteAssignBeforeSpread()
+    {
+        GroundworkBeforeSpread(37, 19);
+        GroundworkBeforeSpread(38, 20);
+        GroundworkBeforeSpread(40, 21);
+        GroundworkBeforeSpread(41, 22);
+        GroundworkBeforeSpread(42, 23);
+        GroundworkBeforeSpread(44, 24);
+        GroundworkBeforeSpread(45, 25);
+        GroundworkBeforeSpread(46, 26);
+        GroundworkBeforeSpread(48, 27);
+        GroundworkBeforeSpread(49, 28);
+        GroundworkBeforeSpread(50, 29);
+        GroundworkBeforeSpread(52, 30);
+        GroundworkBeforeSpread(53, 31);
+        GroundworkBeforeSpread(54, 32);
+        GroundworkBeforeSpread(56, 33);
+        GroundworkBeforeSpread(57, 34);
+        GroundworkBeforeSpread(58, 35);
+        GroundworkBeforeSpread(60, 36);
+    }
+
+    private void Section3SpriteAssignBeforeSpread()
+    {
+        GroundworkBeforeSpread (19, 7);
+        GroundworkBeforeSpread (20, 8);
+        GroundworkBeforeSpread (21, 8);
+        GroundworkBeforeSpread (22, 9);
+        GroundworkBeforeSpread (23, 10);
+        GroundworkBeforeSpread (24, 10);
+        GroundworkBeforeSpread (25, 11);
+        GroundworkBeforeSpread (26, 12);
+        GroundworkBeforeSpread (27, 12);
+        GroundworkBeforeSpread (28, 13);
+        GroundworkBeforeSpread (29, 14);
+        GroundworkBeforeSpread (30, 14);
+        GroundworkBeforeSpread (31, 15);
+        GroundworkBeforeSpread (32, 16);
+        GroundworkBeforeSpread (33, 16);
+        GroundworkBeforeSpread (34, 17);
+        GroundworkBeforeSpread (35, 18);
+        GroundworkBeforeSpread (36, 18);
     }
 
     private void RotateRight()
