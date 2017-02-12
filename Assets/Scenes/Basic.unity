@@ -4984,6 +4984,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1553001739}
   - component: {fileID: 1553001738}
+  - component: {fileID: 1553001740}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -5201,6 +5202,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!111 &1553001740
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1553001737}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: e31f53293117add4fa1ad85313f57a31, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1560752238
 GameObject:
   m_ObjectHideFlags: 0
