@@ -183,15 +183,15 @@ public class BaseController : MonoBehaviour
                 }
                 GroundworkBeforeExpand(37, 19);
                 GroundworkBeforeExpand(38, 20);
-                GroundworkBeforeExpand(41, 21);
-                GroundworkBeforeExpand(42, 22);
-                GroundworkBeforeExpand(44, 23);
-                GroundworkBeforeExpand(45, 24);
-                GroundworkBeforeExpand(46, 25);
-                GroundworkBeforeExpand(48, 26);
-                GroundworkBeforeExpand(49, 27);
-                GroundworkBeforeExpand(50, 28);
-                GroundworkBeforeExpand(51, 29);
+                GroundworkBeforeExpand(40, 21);
+                GroundworkBeforeExpand(41, 22);
+                GroundworkBeforeExpand(42, 23);
+                GroundworkBeforeExpand(44, 24);
+                GroundworkBeforeExpand(45, 25);
+                GroundworkBeforeExpand(46, 26);
+                GroundworkBeforeExpand(48, 27);
+                GroundworkBeforeExpand(49, 28);
+                GroundworkBeforeExpand(50, 29);
                 GroundworkBeforeExpand(52, 30);
                 GroundworkBeforeExpand(53, 31);
                 GroundworkBeforeExpand(54, 32);
@@ -199,13 +199,15 @@ public class BaseController : MonoBehaviour
                 GroundworkBeforeExpand(57, 34);
                 GroundworkBeforeExpand(58, 35);
                 GroundworkBeforeExpand(60, 36);
+
+
             }
         }
     }
 
     private void GroundworkBeforeExpand(int MovingTileNumber, int MovedTileNumber)
     {
-        Tile[MovingTileNumber].transform.localPosition = Tile[MovedTileNumber].transform.localPosition;
+        //Tile[MovingTileNumber].transform.localPosition = Tile[MovedTileNumber].transform.localPosition;
         Tile[MovingTileNumber].GetComponent<SpriteRenderer>().sprite = Tile[MovedTileNumber].GetComponent<SpriteRenderer>().sprite;
     }
 
