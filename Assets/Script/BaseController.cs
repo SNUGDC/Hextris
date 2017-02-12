@@ -37,7 +37,7 @@ public class BaseController : MonoBehaviour
     private float ExplodeNowTime;
     private bool IsExplodeStart = false;
     private bool IsExplodeFinish;
-    private bool IsGroundworkFinish = false;
+    private bool IsGroundwork4Finish = false;
     private bool IsGroundwork3Finish = false;
     private bool IsRotateRight;
     private bool IsRotateLeft;
@@ -49,7 +49,6 @@ public class BaseController : MonoBehaviour
     private int IsSection2Full;
     private int IsSection3Full;
     private int IsSection4Full;
-    private Animator Anim;
 
     private void Start()
     {
@@ -62,7 +61,6 @@ public class BaseController : MonoBehaviour
         IsRotateLeft = false;
         IsBlockCreated = false;
         CreateBlockSwitcher = 0;
-        Anim = GetComponent<Animator>();
 
         Section1Parent = GameObject.Find ("Section 1");
         Section2Parent = GameObject.Find ("Section 2");
@@ -186,7 +184,7 @@ public class BaseController : MonoBehaviour
         {
             if (IsSection4Full == 0)
             {
-                if (IsExplodeStart == false && IsExplodeFinish == false)
+/*                if (IsExplodeStart == false && IsExplodeFinish == false)
                 {
                     ExplodeStartTime = GameTime;
                     ExplodeNowTime = GameTime;
@@ -202,29 +200,45 @@ public class BaseController : MonoBehaviour
                         IsExplodeStart = false;
                     }
                 }
-                else if (IsExplodeFinish == true && IsExplodeStart == false && IsGroundworkFinish == false)
+                else if (IsExplodeFinish == true && IsExplodeStart == false && IsGroundwork4Finish == false)
                 {
                     for (int i = 0; i < 24; i++)
                     {
-                        Destroy(Tile[i + 37].GetComponent<Rigidbody2D>());
-                        Tile[i + 37].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+                        Destroy (Tile [i + 37].GetComponent<Rigidbody2D> ());
+                        Tile [i + 37].GetComponent<SpriteRenderer> ().sprite = ColorTile [0];
                     }
 
-                    Section4SpriteAssignBeforeSpread();
-                    Section3SpriteAssignBeforeSpread();
-
-                    IsGroundworkFinish = true;
+                    Section4SpriteAssignBeforeSpread ();
+                    Section4Parent.SetActive (false);
+                    IsGroundwork4Finish = true;
                 }
-                else if (IsExplodeFinish == true && IsExplodeStart == false && IsGroundworkFinish == true)
+                else if (IsGroundwork4Finish == true)
                 {
-                    Anim.SetBool("SpreadSection4", true);
-                }
+                    Section4Parent.SetActive (true);
+
+                    if (IsGroundwork3Finish == false)
+                    {
+                        for (int i = 0; i < 18; i++)
+                        {
+                            Tile [i + 19].GetComponent<SpriteRenderer> ().sprite = ColorTile [0];
+                        }
+
+                        Section3SpriteAssignBeforeSpread ();
+                        Section3Parent.SetActive (false);
+                        IsGroundwork3Finish = true;
+                    }
+                    else if (IsGroundwork3Finish == true)
+                    {
+                        Section3Parent.SetActive (true);
+                    }
+                }*/
             }
         }
     }
 
     private void GroundworkBeforeSpread(int MovingTileNumber, int MovedTileNumber)
     {
+        //Tile[MovingTileNumber].transform.localPosition = Tile[MovedTileNumber].transform.localPosition;
         Tile[MovingTileNumber].GetComponent<SpriteRenderer>().sprite = Tile[MovedTileNumber].GetComponent<SpriteRenderer>().sprite;
     }
 
