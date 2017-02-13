@@ -24,10 +24,6 @@ public class BaseController : MonoBehaviour
     public int SpecialBlockNumber;
     public float GameTime;
 
-    private GameObject Section4Parent;
-    private GameObject Section3Parent;
-    private GameObject Section2Parent;
-    private GameObject Section1Parent;
     private string ControlBlockName;
     private float RotateStartTime;
     private float StartRotateAngle;
@@ -35,10 +31,10 @@ public class BaseController : MonoBehaviour
     private float ExplodeWaitingTime;
     private float ExplodeStartTime;
     private float ExplodeNowTime;
+    private float AnimationTime;
     private bool IsExplodeStart = false;
+    private bool GroundWorkFinish = false;
     private bool IsExplodeFinish;
-    private bool IsGroundwork4Finish = false;
-    private bool IsGroundwork3Finish = false;
     private bool IsRotateRight;
     private bool IsRotateLeft;
     private int BlockColor;
@@ -56,16 +52,12 @@ public class BaseController : MonoBehaviour
         RotatingSpeed = 0.5f;
         RotateStartTime = 0;
         SpecialBlockNumber = 0;
-        ExplodeWaitingTime = 1f;
+        ExplodeWaitingTime = 1.5f;
         IsRotateRight = false;
         IsRotateLeft = false;
         IsBlockCreated = false;
         CreateBlockSwitcher = 0;
-
-        Section1Parent = GameObject.Find ("Section 1");
-        Section2Parent = GameObject.Find ("Section 2");
-        Section3Parent = GameObject.Find ("Section 3");
-        Section4Parent = GameObject.Find ("Section 4");
+        AnimationTime = 0;
 
         PlayerPrefs.SetString("In Game State", "Play");
 
@@ -182,9 +174,10 @@ public class BaseController : MonoBehaviour
 
         if (PlayerPrefs.GetString ("In Game State") == "Pause")
         {
+
             if (IsSection4Full == 0)
             {
-/*                if (IsExplodeStart == false && IsExplodeFinish == false)
+                if (IsExplodeStart == false && IsExplodeFinish == false)
                 {
                     ExplodeStartTime = GameTime;
                     ExplodeNowTime = GameTime;
@@ -200,7 +193,7 @@ public class BaseController : MonoBehaviour
                         IsExplodeStart = false;
                     }
                 }
-                else if (IsExplodeFinish == true && IsExplodeStart == false && IsGroundwork4Finish == false)
+                else if (IsExplodeStart == false && IsExplodeFinish == true && GroundWorkFinish == false)
                 {
                     for (int i = 0; i < 24; i++)
                     {
@@ -209,36 +202,185 @@ public class BaseController : MonoBehaviour
                     }
 
                     Section4SpriteAssignBeforeSpread ();
-                    Section4Parent.SetActive (false);
-                    IsGroundwork4Finish = true;
+                    Section3SpriteAssignBeforeSpread ();
+                    Section2SpriteAssignBeforeSpread ();
+                    Section1SpriteAssignBeforeSpread ();
+
+                    AnimationTime = 0;
+                    GroundWorkFinish = true;
                 }
-                else if (IsGroundwork4Finish == true)
+                else if(IsExplodeStart == false && IsExplodeFinish == true && GroundWorkFinish == true)
                 {
-                    Section4Parent.SetActive (true);
+                    GetComponent<Animation> ().Play ("Base Spread From Section4");
 
-                    if (IsGroundwork3Finish == false)
+                    if (AnimationTime < 4f)
                     {
-                        for (int i = 0; i < 18; i++)
-                        {
-                            Tile [i + 19].GetComponent<SpriteRenderer> ().sprite = ColorTile [0];
-                        }
+                        AnimationTime = AnimationTime + Time.deltaTime;
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetString ("In Game State", "Play");
+                        IsExplodeStart = false;
+                        AnimationTime = 0;
+                        GroundWorkFinish = false;
+                    }
+                }
+            }
 
-                        Section3SpriteAssignBeforeSpread ();
-                        Section3Parent.SetActive (false);
-                        IsGroundwork3Finish = true;
-                    }
-                    else if (IsGroundwork3Finish == true)
+            else if (IsSection3Full == 0)
+            {
+                if (IsExplodeStart == false && IsExplodeFinish == false)
+                {
+                    ExplodeStartTime = GameTime;
+                    ExplodeNowTime = GameTime;
+                    IsExplodeStart = true;
+                    IsExplodeFinish = false;
+                }
+                else if (IsExplodeStart == true && IsExplodeFinish == false)
+                {
+                    ExplodeNowTime = ExplodeNowTime + Time.deltaTime;
+                    if (ExplodeNowTime - ExplodeStartTime >= ExplodeWaitingTime)
                     {
-                        Section3Parent.SetActive (true);
+                        IsExplodeFinish = true;
+                        IsExplodeStart = false;
                     }
-                }*/
+                }
+                else if (IsExplodeFinish == true && IsExplodeStart == false && GroundWorkFinish == false)
+                {
+                    for (int i = 0; i < 18; i++)
+                    {
+                        Destroy (Tile [i + 19].GetComponent<Rigidbody2D> ());
+                        Tile [i + 19].GetComponent<SpriteRenderer> ().sprite = ColorTile [0];
+                    }
+
+                    Section3SpriteAssignBeforeSpread ();
+                    Section2SpriteAssignBeforeSpread ();
+                    Section1SpriteAssignBeforeSpread ();
+
+                    AnimationTime = 0;
+                    GroundWorkFinish = true;
+                }
+                else if(IsExplodeStart == false && IsExplodeFinish == true && GroundWorkFinish == true)
+                {
+                    GetComponent<Animation> ().Play ("Base Spread From Section3");
+
+                    if (AnimationTime < 3f)
+                    {
+                        AnimationTime = AnimationTime + Time.deltaTime;
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetString ("In Game State", "Play");
+                        IsExplodeStart = false;
+                        AnimationTime = 0;
+                        GroundWorkFinish = false;
+                    }
+                }
+            }
+
+            else if (IsSection2Full == 0)
+            {
+                if (IsExplodeStart == false && IsExplodeFinish == false)
+                {
+                    ExplodeStartTime = GameTime;
+                    ExplodeNowTime = GameTime;
+                    IsExplodeStart = true;
+                    IsExplodeFinish = false;
+                }
+                else if (IsExplodeStart == true && IsExplodeFinish == false)
+                {
+                    ExplodeNowTime = ExplodeNowTime + Time.deltaTime;
+                    if (ExplodeNowTime - ExplodeStartTime >= ExplodeWaitingTime)
+                    {
+                        IsExplodeFinish = true;
+                        IsExplodeStart = false;
+                    }
+                }
+                else if (IsExplodeFinish == true && IsExplodeStart == false && GroundWorkFinish == false)
+                {
+                    for (int i = 0; i < 12; i++)
+                    {
+                        Destroy (Tile [i + 7].GetComponent<Rigidbody2D> ());
+                        Tile [i + 7].GetComponent<SpriteRenderer> ().sprite = ColorTile [0];
+                    }
+
+                    Section2SpriteAssignBeforeSpread ();
+                    Section1SpriteAssignBeforeSpread ();
+
+                    AnimationTime = 0;
+                    GroundWorkFinish = true;
+                }
+                else if(IsExplodeStart == false && IsExplodeFinish == true && GroundWorkFinish == true)
+                {
+                    GetComponent<Animation> ().Play ("Base Spread From Section2");
+
+                    if (AnimationTime < 2f)
+                    {
+                        AnimationTime = AnimationTime + Time.deltaTime;
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetString ("In Game State", "Play");
+                        IsExplodeStart = false;
+                        AnimationTime = 0;
+                        GroundWorkFinish = false;
+                    }
+                }
+            }
+
+            else if (IsSection1Full == 0)
+            {
+                if (IsExplodeStart == false && IsExplodeFinish == false)
+                {
+                    ExplodeStartTime = GameTime;
+                    ExplodeNowTime = GameTime;
+                    IsExplodeStart = true;
+                    IsExplodeFinish = false;
+                }
+                else if (IsExplodeStart == true && IsExplodeFinish == false)
+                {
+                    ExplodeNowTime = ExplodeNowTime + Time.deltaTime;
+                    if (ExplodeNowTime - ExplodeStartTime >= ExplodeWaitingTime)
+                    {
+                        IsExplodeFinish = true;
+                        IsExplodeStart = false;
+                    }
+                }
+                else if (IsExplodeFinish == true && IsExplodeStart == false && GroundWorkFinish == false)
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        Destroy (Tile [i + 1].GetComponent<Rigidbody2D> ());
+                        Tile [i + 1].GetComponent<SpriteRenderer> ().sprite = ColorTile [0];
+                    }
+
+                    Section1SpriteAssignBeforeSpread ();
+
+                    AnimationTime = 0;
+                    GroundWorkFinish = true;
+                }
+                else if(IsExplodeStart == false && IsExplodeFinish == true && GroundWorkFinish == true)
+                {
+                    GetComponent<Animation> ().Play ("Base Spread From Section1");
+
+                    if (AnimationTime < 1f)
+                    {
+                        AnimationTime = AnimationTime + Time.deltaTime;
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetString ("In Game State", "Play");
+                        IsExplodeStart = false;
+                        AnimationTime = 0;
+                        GroundWorkFinish = false;
+                    }
+                }
             }
         }
     }
 
     private void GroundworkBeforeSpread(int MovingTileNumber, int MovedTileNumber)
     {
-        //Tile[MovingTileNumber].transform.localPosition = Tile[MovedTileNumber].transform.localPosition;
         Tile[MovingTileNumber].GetComponent<SpriteRenderer>().sprite = Tile[MovedTileNumber].GetComponent<SpriteRenderer>().sprite;
     }
 
@@ -284,6 +426,26 @@ public class BaseController : MonoBehaviour
         GroundworkBeforeSpread (34, 17);
         GroundworkBeforeSpread (35, 18);
         GroundworkBeforeSpread (36, 18);
+    }
+
+    private void Section2SpriteAssignBeforeSpread()
+    {
+        GroundworkBeforeSpread (7, 1);
+        GroundworkBeforeSpread (9, 2);
+        GroundworkBeforeSpread (11, 3);
+        GroundworkBeforeSpread (13, 4);
+        GroundworkBeforeSpread (15, 5);
+        GroundworkBeforeSpread (17, 6);
+    }
+
+    private void Section1SpriteAssignBeforeSpread()
+    {
+        GroundworkBeforeSpread (1, 0);
+        GroundworkBeforeSpread (2, 0);
+        GroundworkBeforeSpread (3, 0);
+        GroundworkBeforeSpread (4, 0);
+        GroundworkBeforeSpread (5, 0);
+        GroundworkBeforeSpread (6, 0);
     }
 
     private void RotateRight()
