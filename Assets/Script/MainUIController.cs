@@ -56,13 +56,15 @@ public class MainUIController : MonoBehaviour
 
     public void BombButtonIsClicked()
     {
-        if(Base.GetComponent<BaseController>().IsBlockCreated == true)
+        if(Base.GetComponent<BaseController>().IsBlockCreated == true
+            && Base.GetComponent<BaseController>().SpecialBlock == 0)
             Base.GetComponent<BaseController>().SpecialBlockNumber = 2;
     }
 
     public void SinkerButtonIsClicked()
     {
-        if (Base.GetComponent<BaseController>().IsBlockCreated == true)
+        if (Base.GetComponent<BaseController>().IsBlockCreated == true
+            && Base.GetComponent<BaseController>().SpecialBlock == 0)
             Base.GetComponent<BaseController>().SpecialBlockNumber = 1;
     }
 }

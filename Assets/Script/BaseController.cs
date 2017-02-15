@@ -22,6 +22,8 @@ public class BaseController : MonoBehaviour
     public bool CreateBlock;
     public int[] BlockOrder;
     public int SpecialBlockNumber;
+    public int SpecialBlock;
+    public int Score;
     public float GameTime;
 
     private string ControlBlockName;
@@ -40,7 +42,6 @@ public class BaseController : MonoBehaviour
     private int BlockColor;
     private int BlockNumber;
     private int CreateBlockSwitcher;
-    private int SpecialBlock;
     private int IsSection1Full;
     private int IsSection2Full;
     private int IsSection3Full;
@@ -49,6 +50,7 @@ public class BaseController : MonoBehaviour
     private void Start()
     {
         GameTime = 0;
+        Score = 0;
         RotatingSpeed = 0.5f;
         RotateStartTime = 0;
         SpecialBlockNumber = 0;
@@ -599,6 +601,29 @@ public class BaseController : MonoBehaviour
         MoveBlockDownward = false;
     }
 
+    private void CheckToCanCreateBlock()
+    {
+        int BaseAngle = (int)transform.eulerAngles.z / 60;
+
+        switch (BaseAngle)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            default:
+                break;
+        }
+    }
+
     private void CreateSpecialBlock()
     {
         Destroy(CreatedBlocks);
@@ -714,6 +739,7 @@ public class BaseController : MonoBehaviour
     private Vector3 GravityVector()
     {
         int BaseAngle = (int)transform.eulerAngles.z;
+
         switch (BaseAngle)
         {
         case 0:

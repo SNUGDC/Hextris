@@ -1,0 +1,8 @@
+Triangle 생성시 	100점
+DownV 생성시	200점
+Long 생성시	300점
+
+Section4 채울 시	4000점
+Section3 채울 시	8000점
+Section2 채울 시	16000점
+Section1 채울 시	32000점
