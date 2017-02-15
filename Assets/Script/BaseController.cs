@@ -177,16 +177,10 @@ public class BaseController : MonoBehaviour
 
             if (IsSection4Full == 0)
             {
-                if (IsExplodeStart == false && IsExplodeFinish == false)
-                {
-                    ExplodeStartTime = GameTime;
-                    ExplodeNowTime = GameTime;
-                    IsExplodeStart = true;
-                    IsExplodeFinish = false;
-                }
-                else if (IsExplodeStart == true && IsExplodeFinish == false)
+                if (IsExplodeStart == true && IsExplodeFinish == false)
                 {
                     ExplodeNowTime = ExplodeNowTime + Time.deltaTime;
+
                     if (ExplodeNowTime - ExplodeStartTime >= ExplodeWaitingTime)
                     {
                         IsExplodeFinish = true;
@@ -843,7 +837,6 @@ public class BaseController : MonoBehaviour
     private void DestroyAndMoveBlocks()
     {
         ExplodeBlocks ();
-        //SpreadBlocks ();
     }
 
     private void ExplodeBlocks()
@@ -866,6 +859,11 @@ public class BaseController : MonoBehaviour
                 TileBody.velocity = new Vector2 (XVelocity, YVelocity);
             }
 
+            ExplodeStartTime = GameTime;
+            ExplodeNowTime = GameTime;
+            IsExplodeStart = true;
+            IsExplodeFinish = false;
+
             PlayerPrefs.SetString ("In Game State", "Pause");
         }
 
@@ -873,8 +871,8 @@ public class BaseController : MonoBehaviour
         {
             for (int i = 0; i < 18; i++)
             {
-                Tile [i + 37].AddComponent<Rigidbody2D> ();
-                TileBody = Tile [i + 37].GetComponent<Rigidbody2D> ();
+                Tile [i + 19].AddComponent<Rigidbody2D> ();
+                TileBody = Tile [i + 19].GetComponent<Rigidbody2D> ();
 
                 XVelocity = Random.Range (-10.0f, 10.0f);
                 YVelocity = Random.Range (-10.0f, 10.0f);
@@ -882,14 +880,21 @@ public class BaseController : MonoBehaviour
 
                 TileBody.velocity = new Vector2 (XVelocity, YVelocity);
             }
+
+            ExplodeStartTime = GameTime;
+            ExplodeNowTime = GameTime;
+            IsExplodeStart = true;
+            IsExplodeFinish = false;
+
+            PlayerPrefs.SetString("In Game State", "Pause");
         }
 
         if (IsSection2Full == 0)
         {
             for (int i = 0; i < 12; i++)
             {
-                Tile [i + 37].AddComponent<Rigidbody2D> ();
-                TileBody = Tile [i + 37].GetComponent<Rigidbody2D> ();
+                Tile [i + 7].AddComponent<Rigidbody2D> ();
+                TileBody = Tile [i + 7].GetComponent<Rigidbody2D> ();
 
                 XVelocity = Random.Range (-10.0f, 10.0f);
                 YVelocity = Random.Range (-10.0f, 10.0f);
@@ -897,14 +902,21 @@ public class BaseController : MonoBehaviour
 
                 TileBody.velocity = new Vector2 (XVelocity, YVelocity);
             }
+
+            ExplodeStartTime = GameTime;
+            ExplodeNowTime = GameTime;
+            IsExplodeStart = true;
+            IsExplodeFinish = false;
+
+            PlayerPrefs.SetString("In Game State", "Pause");
         }
 
         if (IsSection1Full == 0)
         {
             for (int i = 0; i < 6; i++)
             {
-                Tile [i + 37].AddComponent<Rigidbody2D> ();
-                TileBody = Tile [i + 37].GetComponent<Rigidbody2D> ();
+                Tile [i + 1].AddComponent<Rigidbody2D> ();
+                TileBody = Tile [i + 1].GetComponent<Rigidbody2D> ();
 
                 XVelocity = Random.Range (-10.0f, 10.0f);
                 YVelocity = Random.Range (-10.0f, 10.0f);
@@ -912,152 +924,13 @@ public class BaseController : MonoBehaviour
 
                 TileBody.velocity = new Vector2 (XVelocity, YVelocity);
             }
+
+            ExplodeStartTime = GameTime;
+            ExplodeNowTime = GameTime;
+            IsExplodeStart = true;
+            IsExplodeFinish = false;
+
+            PlayerPrefs.SetString("In Game State", "Pause");
         }
-    }
-
-    private void SpreadBlocks()
-    {
-        if (IsSection4Full == 0)
-        {
-            for (int i = 0; i < 24; i++)
-            {
-                Section4 [i].GetComponent<SpriteRenderer> ().sprite = ColorTile [0];
-            }
-
-            MoveBlockAtoB (19, 37);
-            MoveBlockAtoB (20, 38);
-            MoveBlockAtoB (21, 40);
-            MoveBlockAtoB (22, 41);
-            MoveBlockAtoB (23, 42);
-            MoveBlockAtoB (24, 44);
-            MoveBlockAtoB (25, 45);
-            MoveBlockAtoB (26, 46);
-            MoveBlockAtoB (27, 48);
-            MoveBlockAtoB (28, 49);
-            MoveBlockAtoB (29, 50);
-            MoveBlockAtoB (30, 52);
-            MoveBlockAtoB (31, 53);
-            MoveBlockAtoB (32, 54);
-            MoveBlockAtoB (33, 56);
-            MoveBlockAtoB (34, 57);
-            MoveBlockAtoB (35, 58);
-            MoveBlockAtoB (36, 60);
-
-            MoveBlockAtoB (7, 19);
-            MoveBlockAtoB (8, 20);
-            MoveBlockAtoB (8, 21);
-            MoveBlockAtoB (9, 22);
-            MoveBlockAtoB (10, 23);
-            MoveBlockAtoB (10, 24);
-            MoveBlockAtoB (11, 25);
-            MoveBlockAtoB (12, 26);
-            MoveBlockAtoB (12, 27);
-            MoveBlockAtoB (13, 28);
-            MoveBlockAtoB (14, 29);
-            MoveBlockAtoB (14, 30);
-            MoveBlockAtoB (15, 31);
-            MoveBlockAtoB (16, 32);
-            MoveBlockAtoB (16, 33);
-            MoveBlockAtoB (17, 34);
-            MoveBlockAtoB (18, 35);
-            MoveBlockAtoB (18, 36);
-
-            MoveBlockAtoB (1, 7);
-            MoveBlockAtoB (2, 9);
-            MoveBlockAtoB (3, 11);
-            MoveBlockAtoB (4, 13);
-            MoveBlockAtoB (5, 15);
-            MoveBlockAtoB (6, 17);
-
-            MoveBlockAtoB (0, 1);
-            MoveBlockAtoB (0, 2);
-            MoveBlockAtoB (0, 3);
-            MoveBlockAtoB (0, 4);
-            MoveBlockAtoB (0, 5);
-            MoveBlockAtoB (0, 6);
-        }
-
-        if (IsSection3Full == 0)
-        {
-            for (int i = 0; i < 18; i++)
-            {
-                Section3 [i].GetComponent<SpriteRenderer> ().sprite = ColorTile [0];
-            }
-
-            MoveBlockAtoB (7, 19);
-            MoveBlockAtoB (8, 20);
-            MoveBlockAtoB (8, 21);
-            MoveBlockAtoB (9, 22);
-            MoveBlockAtoB (10, 23);
-            MoveBlockAtoB (10, 24);
-            MoveBlockAtoB (11, 25);
-            MoveBlockAtoB (12, 26);
-            MoveBlockAtoB (12, 27);
-            MoveBlockAtoB (13, 28);
-            MoveBlockAtoB (14, 29);
-            MoveBlockAtoB (14, 30);
-            MoveBlockAtoB (15, 31);
-            MoveBlockAtoB (16, 32);
-            MoveBlockAtoB (16, 33);
-            MoveBlockAtoB (17, 34);
-            MoveBlockAtoB (18, 35);
-            MoveBlockAtoB (18, 36);
-
-            MoveBlockAtoB (1, 7);
-            MoveBlockAtoB (2, 9);
-            MoveBlockAtoB (3, 11);
-            MoveBlockAtoB (4, 13);
-            MoveBlockAtoB (5, 15);
-            MoveBlockAtoB (6, 17);
-
-            MoveBlockAtoB (0, 1);
-            MoveBlockAtoB (0, 2);
-            MoveBlockAtoB (0, 3);
-            MoveBlockAtoB (0, 4);
-            MoveBlockAtoB (0, 5);
-            MoveBlockAtoB (0, 6);
-        }
-
-        if (IsSection2Full == 0)
-        {
-            for (int i = 0; i < 12; i++)
-            {
-                Section2 [i].GetComponent<SpriteRenderer> ().sprite = ColorTile [0];
-            }
-
-            MoveBlockAtoB (1, 7);
-            MoveBlockAtoB (2, 9);
-            MoveBlockAtoB (3, 11);
-            MoveBlockAtoB (4, 13);
-            MoveBlockAtoB (5, 15);
-            MoveBlockAtoB (6, 17);
-
-            MoveBlockAtoB (0, 1);
-            MoveBlockAtoB (0, 2);
-            MoveBlockAtoB (0, 3);
-            MoveBlockAtoB (0, 4);
-            MoveBlockAtoB (0, 5);
-            MoveBlockAtoB (0, 6);
-        }
-
-        if (IsSection1Full == 0)
-        {
-            for (int i = 0; i < 6; i++)
-            {
-                Section1 [i].GetComponent<SpriteRenderer> ().sprite = ColorTile [0];
-            }
-
-            MoveBlockAtoB (0, 1);
-            MoveBlockAtoB (0, 2);
-            MoveBlockAtoB (0, 3);
-            MoveBlockAtoB (0, 4);
-            MoveBlockAtoB (0, 5);
-            MoveBlockAtoB (0, 6);
-        }
-    }
-
-    private void MoveBlockAtoB(int a, int b)
-    {
-        Tile [b].GetComponent<SpriteRenderer> ().sprite = Tile [a].GetComponent<SpriteRenderer> ().sprite;
     }
 }

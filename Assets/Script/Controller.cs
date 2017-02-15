@@ -111,11 +111,9 @@ public class Controller : MonoBehaviour
                 {
                 case Command.RIGHT:
                         Base.GetComponent<BaseController> ().RotateToRight = true;
-                        CounterClockwiseRotateArrow.SetActive (false);
                         break;
                     case Command.LEFT:
                         Base.GetComponent<BaseController>().RotateToLeft = true;
-                        ClockwiseRotateArrow.SetActive (false);
                         break;
                     case Command.DOWN:
                         Base.GetComponent<BaseController>().MoveBlockDownward = true;
@@ -128,6 +126,9 @@ public class Controller : MonoBehaviour
                         break;
                 }
             }
+
+            CounterClockwiseRotateArrow.SetActive(false);
+            ClockwiseRotateArrow.SetActive(false);
         }
     }
 }
