@@ -567,16 +567,25 @@ public class BaseController : MonoBehaviour
 
         BlockNumber = BlockOrder[0];
 
+        if (CanCreateBlock() == false)
+        {
+            Debug.Log("블럭을 생성할 수 없습니다!!");
+            return;
+        }
+            
         switch (BlockNumber)
         {
             case 0:
                 BlockColor = (3 * PlayerPrefs.GetInt("Skin Number")) + 1;
+                Score = Score + 20;
                 break;
             case 1:
                 BlockColor = (3 * PlayerPrefs.GetInt("Skin Number")) + 2;
+                Score = Score + 10;
                 break;
             case 2:
                 BlockColor = (3 * PlayerPrefs.GetInt("Skin Number")) + 3;
+                Score = Score + 30;
                 break;
             default:
                 Debug.Log("Something Worng At Deciding Block Color");
@@ -601,26 +610,147 @@ public class BaseController : MonoBehaviour
         MoveBlockDownward = false;
     }
 
-    private void CheckToCanCreateBlock()
+    private bool CanCreateBlock()
     {
         int BaseAngle = (int)transform.eulerAngles.z / 60;
 
         switch (BaseAngle)
         {
             case 0:
-                break;
+                switch (BlockNumber)
+                {
+                    case 0:
+                        if (Tile[3].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[5].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    case 1:
+                        if (Tile[4].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[5].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    case 2:
+                        if (Tile[4].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[13].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    default:
+                        Debug.Log("Something is wrong at create block");
+                        return false;
+                }
             case 1:
-                break;
+                switch (BlockNumber)
+                {
+                    case 0:
+                        if (Tile[4].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[6].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    case 1:
+                        if (Tile[6].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[5].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    case 2:
+                        if (Tile[5].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[15].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    default:
+                        Debug.Log("Something is wrong at create block");
+                        return false;
+                }
             case 2:
-                break;
+                switch (BlockNumber)
+                {
+                    case 0:
+                        if (Tile[1].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[5].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    case 1:
+                        if (Tile[1].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[6].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    case 2:
+                        if (Tile[6].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[17].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    default:
+                        Debug.Log("Something is wrong at create block");
+                        return false;
+                }
             case 3:
-                break;
+                switch (BlockNumber)
+                {
+                    case 0:
+                        if (Tile[2].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[6].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    case 1:
+                        if (Tile[1].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[2].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    case 2:
+                        if (Tile[1].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[7].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    default:
+                        Debug.Log("Something is wrong at create block");
+                        return false;
+                }
             case 4:
-                break;
+                switch (BlockNumber)
+                {
+                    case 0:
+                        if (Tile[3].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[1].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    case 1:
+                        if (Tile[3].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[2].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    case 2:
+                        if (Tile[2].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[9].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    default:
+                        Debug.Log("Something is wrong at create block");
+                        return false;
+                }
             case 5:
-                break;
+                switch (BlockNumber)
+                {
+                    case 0:
+                        if (Tile[4].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[2].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    case 1:
+                        if (Tile[4].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[3].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    case 2:
+                        if (Tile[3].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray"
+                            && Tile[11].GetComponent<SpriteRenderer>().sprite.name == "Hex_Gray")
+                            return true;
+                        else return false;
+                    default:
+                        Debug.Log("Something is wrong at create block");
+                        return false;
+                }
             default:
-                break;
+                Debug.Log("Something is wrong at create block");
+                return false;
         }
     }
 
@@ -827,20 +957,15 @@ public class BaseController : MonoBehaviour
         IsSection3Full = 18;
         IsSection4Full = 24;
 
-        for (int i = 0; i < 24; i++)
+        for (int i = 0; i < 6; i++)
         {
-            if (Section4[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
+            if (Section1[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
             {
-                IsSection4Full = IsSection4Full - 1;
+                IsSection1Full = IsSection1Full - 1;
             }
-        }
 
-        for (int i = 0; i < 18; i++)
-        {
-            if (Section3[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
-            {
-                IsSection3Full = IsSection3Full - 1;
-            }
+            if (IsSection1Full == 0)
+                return;
         }
 
         for (int i = 0; i < 12; i++)
@@ -849,14 +974,31 @@ public class BaseController : MonoBehaviour
             {
                 IsSection2Full = IsSection2Full - 1;
             }
+
+            if (IsSection2Full == 0)
+                return;
         }
 
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 18; i++)
         {
-            if (Section1[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
+            if (Section3[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
             {
-                IsSection1Full = IsSection1Full - 1;
+                IsSection3Full = IsSection3Full - 1;
             }
+
+            if (IsSection3Full == 0)
+                return;
+        }
+
+        for (int i = 0; i < 24; i++)
+        {
+            if (Section4[i].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
+            {
+                IsSection4Full = IsSection4Full - 1;
+            }
+
+            if (IsSection4Full == 0)
+                return;
         }
     }
 

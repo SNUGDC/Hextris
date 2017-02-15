@@ -5709,6 +5709,8 @@ MonoBehaviour:
   CreateBlock: 0
   BlockOrder: 000000000000000000000000
   SpecialBlockNumber: 0
+  SpecialBlock: 0
+  Score: 0
   GameTime: 0
 --- !u!4 &1553001739
 Transform:
