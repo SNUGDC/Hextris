@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayTimeController : MonoBehaviour
+public class ScoreController : MonoBehaviour
 {
     public Sprite[] Number;
     public Image[] TimeImage;
 
     private GameObject Base;
-    private float GameTime_float;
-    private int GameTime_int;
+    private int Score;
     private int[] PlayTimeNumber;
 
     private void Start()
     {
         Base = GameObject.Find ("Base");
 
-        PlayTimeNumber = new int[3];
+        PlayTimeNumber = new int[5];
     }
 
     private void Update()
@@ -27,16 +26,18 @@ public class PlayTimeController : MonoBehaviour
 
     public void Pause()
     {
-        GameTime_float = Base.GetComponent<BaseController>().GameTime;
+        Score = Base.GetComponent<BaseController>().Score;
 
-        GameTime_int = (int)GameTime_float;
-        PlayTimeNumber[0] = GameTime_int / 60;
+        PlayTimeNumber[4] = Score / 10000;
+        PlayTimeNumber[3] = Score % 10000;
+        PlayTimeNumber[2] = PlayTimeNumber[3] % 1000;
+        PlayTimeNumber[3] = PlayTimeNumber[3] / 1000;
+        PlayTimeNumber[1] = PlayTimeNumber[2] % 100;
+        PlayTimeNumber[2] = PlayTimeNumber[2] / 100;
+        PlayTimeNumber[0] = PlayTimeNumber[1] % 10;
+        PlayTimeNumber[1] = PlayTimeNumber[1] / 10;
 
-        GameTime_int = GameTime_int - PlayTimeNumber[0] * 60;
-        PlayTimeNumber[1] = GameTime_int / 10;
-        PlayTimeNumber[2] = GameTime_int % 10;
-
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             for (int j = 0; j < 10; j++)
             {
