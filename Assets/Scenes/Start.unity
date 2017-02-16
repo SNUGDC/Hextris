@@ -2073,6 +2073,25 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212177213403884994, guid: b4b865be5ac6907428d93ed9b3139f3b,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.71323526
+      objectReference: {fileID: 0}
+    - target: {fileID: 212177213403884994, guid: b4b865be5ac6907428d93ed9b3139f3b,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.71323526
+      objectReference: {fileID: 0}
+    - target: {fileID: 212177213403884994, guid: b4b865be5ac6907428d93ed9b3139f3b,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.71323526
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922525463301092, guid: b4b865be5ac6907428d93ed9b3139f3b, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b4b865be5ac6907428d93ed9b3139f3b, type: 2}
   m_IsPrefabParent: 0
