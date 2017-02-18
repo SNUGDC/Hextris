@@ -417,10 +417,15 @@ public class BaseController : MonoBehaviour
     private void Section2SpriteAssignBeforeSpread()
     {
         GroundworkBeforeSpread (7, 1);
+        GroundworkBeforeSpread (8, 0);
         GroundworkBeforeSpread (9, 2);
+        GroundworkBeforeSpread(10, 0);
         GroundworkBeforeSpread (11, 3);
+        GroundworkBeforeSpread(12, 0);
         GroundworkBeforeSpread (13, 4);
+        GroundworkBeforeSpread(14, 0);
         GroundworkBeforeSpread (15, 5);
+        GroundworkBeforeSpread(16, 0);
         GroundworkBeforeSpread (17, 6);
     }
 
