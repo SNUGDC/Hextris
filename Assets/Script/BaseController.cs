@@ -26,6 +26,7 @@ public class BaseController : MonoBehaviour
     public int Score;
     public float GameTime;
 
+    private GameObject UIController;
     private string ControlBlockName;
     private float RotateStartTime;
     private float StartRotateAngle;
@@ -60,6 +61,8 @@ public class BaseController : MonoBehaviour
         IsBlockCreated = false;
         CreateBlockSwitcher = 0;
         AnimationTime = 0;
+
+        UIController = GameObject.Find("UIController");
 
         PlayerPrefs.SetString("In Game State", "Play");
 
@@ -564,6 +567,7 @@ public class BaseController : MonoBehaviour
 
         if (CanCreateBlock() == false)
         {
+            UIController.GetComponent<MainUIController>().GameOver();
             Debug.Log("블럭을 생성할 수 없습니다!!");
             return;
         }
@@ -608,6 +612,9 @@ public class BaseController : MonoBehaviour
     private bool CanCreateBlock()
     {
         int BaseAngle = (int)transform.eulerAngles.z / 60;
+
+        if (Tile[0].GetComponent<SpriteRenderer>().sprite.name != "Hex_Gray")
+            return false;
 
         switch (BaseAngle)
         {

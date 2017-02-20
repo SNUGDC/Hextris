@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement;
 public class MainUIController : MonoBehaviour
 {
     public Sprite[] Block;
+    public GameObject PausePanel;
+    public GameObject GameOverPanel;
 
     private GameObject Base;
-    private GameObject PausePanel;
-
+    
     private Image[] NextBlockImage;
     private int[] BlockOrder;
 
@@ -21,10 +22,10 @@ public class MainUIController : MonoBehaviour
         NextBlockImage[1] = GameObject.Find("Next Block 2").GetComponent<Image>();
         NextBlockImage[2] = GameObject.Find("Next Block 3").GetComponent<Image>();
         Base = GameObject.Find("Base");
-        PausePanel = GameObject.Find("Pause Panel");
 
         BlockOrder = new int[3];
         PausePanel.SetActive(false);
+        GameOverPanel.SetActive(false);
     }
 
     void Update()
@@ -66,5 +67,19 @@ public class MainUIController : MonoBehaviour
         if (Base.GetComponent<BaseController>().IsBlockCreated == true
             && Base.GetComponent<BaseController>().SpecialBlock == 0)
             Base.GetComponent<BaseController>().SpecialBlockNumber = 1;
+    }
+
+    public void GameOver()
+    {
+        PlayerPrefs.SetString("In Game State", "Pause");
+        GetComponent<BoxCollider2D>().enabled = false;
+        GameOverPanel.SetActive(true);
+    }
+
+    public void Retry()
+    {
+        PlayerPrefs.SetString("In Game State", "Play");
+        GetComponent<BoxCollider2D>().enabled = true;
+        GameOverPanel.SetActive(false);
     }
 }

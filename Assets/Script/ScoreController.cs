@@ -31,6 +31,25 @@ public class ScoreController : MonoBehaviour
     {
         Score = Base.GetComponent<BaseController>().Score;
 
+        if (Score < 100)
+        {
+            TimeImage[4].color = new Vector4(1, 1, 1, 0);
+            TimeImage[3].color = new Vector4(1, 1, 1, 0);
+            TimeImage[2].color = new Vector4(1, 1, 1, 0);
+        }
+        else if (Score < 1000)
+        {
+            TimeImage[4].color = new Vector4(1, 1, 1, 0);
+            TimeImage[3].color = new Vector4(1, 1, 1, 0);
+            TimeImage[2].color = new Vector4(1, 1, 1, 1);
+        }
+        else if (Score < 10000)
+        {
+            TimeImage[4].color = new Vector4(1, 1, 1, 0);
+            TimeImage[3].color = new Vector4(1, 1, 1, 1);
+            TimeImage[2].color = new Vector4(1, 1, 1, 1);
+        }
+
         PlayTimeNumber[4] = Score / 10000;
         PlayTimeNumber[3] = Score % 10000;
         PlayTimeNumber[2] = PlayTimeNumber[3] % 1000;
