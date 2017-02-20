@@ -21,7 +21,10 @@ public class ScoreController : MonoBehaviour
 
     private void Update()
     {
-
+        if (PlayerPrefs.GetString("In Game State") == "Play")
+        {
+            Pause();
+        }
     }
 
     public void Pause()
