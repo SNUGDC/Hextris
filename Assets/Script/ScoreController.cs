@@ -11,7 +11,6 @@ public class ScoreController : MonoBehaviour
 
     private GameObject Base;
     private int Score;
-    private int Coin = 0;
     private int[] PlayTimeNumber;
 
     private void Start()
@@ -49,7 +48,11 @@ public class ScoreController : MonoBehaviour
             }
             else if (WhoAreYou == "Coin")
             {
-                CoinController();
+                CoinController(Score / 100);
+            }
+            else if (WhoAreYou == "Shop Coin")
+            {
+                CoinController(PlayerPrefs.GetInt("Coin"));
             }
         }
     }
@@ -116,10 +119,8 @@ public class ScoreController : MonoBehaviour
         }
     }
 
-    private void CoinController()
+    private void CoinController(int Coin)
     {
-        Coin = Score / 100;
-
         if (Coin < 10)
         {
             TimeImage[2].color = new Vector4(1, 1, 1, 0);

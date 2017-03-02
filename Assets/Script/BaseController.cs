@@ -227,6 +227,7 @@ public class BaseController : MonoBehaviour
                     PlayerPrefs.SetString("In Game State", "Play");
                     IsExplodeStart = false;
                     AnimationTime = 0;
+                    IsSection4Full = 24;
                     GroundWorkFinish = false;
                 }
             }
@@ -273,6 +274,7 @@ public class BaseController : MonoBehaviour
                     PlayerPrefs.SetString("In Game State", "Play");
                     IsExplodeStart = false;
                     AnimationTime = 0;
+                    IsSection3Full = 18;
                     GroundWorkFinish = false;
                 }
             }
@@ -318,6 +320,7 @@ public class BaseController : MonoBehaviour
                     PlayerPrefs.SetString("In Game State", "Play");
                     IsExplodeStart = false;
                     AnimationTime = 0;
+                    IsSection2Full = 12;
                     GroundWorkFinish = false;
                 }
             }
@@ -362,6 +365,7 @@ public class BaseController : MonoBehaviour
                     PlayerPrefs.SetString("In Game State", "Play");
                     IsExplodeStart = false;
                     AnimationTime = 0;
+                    IsSection1Full = 6;
                     GroundWorkFinish = false;
                 }
             }
@@ -422,13 +426,13 @@ public class BaseController : MonoBehaviour
         GroundworkBeforeSpread (7, 1);
         GroundworkBeforeSpread (8, 0);
         GroundworkBeforeSpread (9, 2);
-        GroundworkBeforeSpread(10, 0);
+        GroundworkBeforeSpread (10, 0);
         GroundworkBeforeSpread (11, 3);
-        GroundworkBeforeSpread(12, 0);
+        GroundworkBeforeSpread (12, 0);
         GroundworkBeforeSpread (13, 4);
-        GroundworkBeforeSpread(14, 0);
+        GroundworkBeforeSpread (14, 0);
         GroundworkBeforeSpread (15, 5);
-        GroundworkBeforeSpread(16, 0);
+        GroundworkBeforeSpread (16, 0);
         GroundworkBeforeSpread (17, 6);
     }
 

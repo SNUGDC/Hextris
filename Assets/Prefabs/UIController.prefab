@@ -71,8 +71,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ed1a992766ea8d64b9bb9cbfe1b5f8db, type: 3}
   - {fileID: 21300000, guid: 3cbe99cbb98483740b0f9e1defc7c833, type: 3}
   - {fileID: 21300000, guid: 2c0aaa163d0d84646a2f92110cf2ac22, type: 3}
+  GameState:
+  - {fileID: 21300000, guid: 8cde6e002cb84ac44b91db08b563888c, type: 3}
+  - {fileID: 21300000, guid: be0637ee39f8cb44c8368578e3bf141e, type: 3}
   PausePanel: {fileID: 0}
-  GameOverPanel: {fileID: 0}
+  GameStateWord: {fileID: 0}
+  PlayAgainButton: {fileID: 0}
 --- !u!114 &114949003203982478
 MonoBehaviour:
   m_ObjectHideFlags: 1

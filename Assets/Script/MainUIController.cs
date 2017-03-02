@@ -7,7 +7,11 @@ using UnityEngine.SceneManagement;
 public class MainUIController : MonoBehaviour
 {
     public Sprite[] Block;
+    public Sprite[] GameState;
     public GameObject PausePanel;
+    public GameObject PlayAgainButton;
+    public GameObject FacebookShare;
+    public Image GameStateWord;
 
     private GameObject Base;
     
@@ -21,7 +25,9 @@ public class MainUIController : MonoBehaviour
         NextBlockImage[1] = GameObject.Find("Next Block 2").GetComponent<Image>();
         NextBlockImage[2] = GameObject.Find("Next Block 3").GetComponent<Image>();
         Base = GameObject.Find("Base");
+        FacebookShare.SetActive(false);
 
+        GameStateWord.sprite = GameState[0];
         BlockOrder = new int[3];
         PausePanel.SetActive(false);
     }
@@ -39,6 +45,7 @@ public class MainUIController : MonoBehaviour
     public void Pause()
     {
         PausePanel.SetActive (true);
+        GameStateWord.sprite = GameState[0];
         PlayerPrefs.SetString("In Game State", "Pause");
     }
 
@@ -51,6 +58,16 @@ public class MainUIController : MonoBehaviour
     public void Exit()
     {
         SceneManager.LoadScene("Start");
+        int Coin = Base.GetComponent<BaseController>().Score / 100;
+
+        if (!(PlayerPrefs.HasKey("Coin")))
+        {
+            PlayerPrefs.SetInt("Coin", Coin);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin") + Coin);
+        }
     }
 
     public void BombButtonIsClicked()
@@ -71,11 +88,9 @@ public class MainUIController : MonoBehaviour
     {
         PlayerPrefs.SetString("In Game State", "Pause");
         GetComponent<BoxCollider2D>().enabled = false;
+        GameStateWord.sprite = GameState[1];
+        PlayAgainButton.SetActive(false);
+        FacebookShare.SetActive(true);
         PausePanel.SetActive(true);
-    }
-
-    public void Retry()
-    {
-        SceneManager.LoadScene("Basic");
     }
 }

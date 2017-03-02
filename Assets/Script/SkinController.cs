@@ -15,12 +15,18 @@ public class SkinController : MonoBehaviour
     public Sprite[] SkinBlue;
     public Sprite[] SkinRed;
     public Sprite[] SkinYellow;
+    public int[] SkinPrice;
+    public Image[] PriceImage;
 
     private int SkinNumber;
     private int WhatSkinShow;
 
     private void Start()
     {
+        if (!(PlayerPrefs.HasKey("Skin Number")))
+        {
+            PlayerPrefs.SetInt("Skin Number", 0);
+        }
         SkinNumber = PlayerPrefs.GetInt("Skin Number");
         WhatSkinShow = 0;
         CheckMark.SetActive(false);
