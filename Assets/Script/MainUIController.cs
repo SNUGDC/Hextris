@@ -8,7 +8,6 @@ public class MainUIController : MonoBehaviour
 {
     public Sprite[] Block;
     public GameObject PausePanel;
-    public GameObject GameOverPanel;
 
     private GameObject Base;
     
@@ -25,7 +24,6 @@ public class MainUIController : MonoBehaviour
 
         BlockOrder = new int[3];
         PausePanel.SetActive(false);
-        GameOverPanel.SetActive(false);
     }
 
     void Update()
@@ -52,7 +50,7 @@ public class MainUIController : MonoBehaviour
 
     public void Exit()
     {
-        SceneManager.LoadScene("Stage Select");
+        SceneManager.LoadScene("Start");
     }
 
     public void BombButtonIsClicked()
@@ -73,13 +71,11 @@ public class MainUIController : MonoBehaviour
     {
         PlayerPrefs.SetString("In Game State", "Pause");
         GetComponent<BoxCollider2D>().enabled = false;
-        GameOverPanel.SetActive(true);
+        PausePanel.SetActive(true);
     }
 
     public void Retry()
     {
-        PlayerPrefs.SetString("In Game State", "Play");
-        GetComponent<BoxCollider2D>().enabled = true;
-        GameOverPanel.SetActive(false);
+        SceneManager.LoadScene("Basic");
     }
 }

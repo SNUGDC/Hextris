@@ -7,13 +7,20 @@ public class ScoreController : MonoBehaviour
 {
     public Sprite[] Number;
     public Image[] TimeImage;
+    public string WhoAreYou;
 
     private GameObject Base;
     private int Score;
+    private int Coin = 0;
     private int[] PlayTimeNumber;
 
     private void Start()
     {
+        if (!(PlayerPrefs.HasKey("Best Score")))
+        {
+            PlayerPrefs.SetInt("Best Score", 0);
+        }
+
         Base = GameObject.Find ("Base");
 
         PlayTimeNumber = new int[5];
@@ -21,16 +28,39 @@ public class ScoreController : MonoBehaviour
 
     private void Update()
     {
+        Score = Base.GetComponent<BaseController>().Score;
+
         if (PlayerPrefs.GetString("In Game State") == "Play")
         {
-            Pause();
+            if (WhoAreYou == "Score")
+            {
+                DisplayScore(Score);
+            }
+        }
+        if (PlayerPrefs.GetString("In Game State") == "Pause")
+        {
+            if (WhoAreYou == "Best Score")
+            {
+                DisplayScore(BestScore());
+            }
+            else if (WhoAreYou == "Score")
+            {
+                DisplayScore(Score);
+            }
+            else if (WhoAreYou == "Coin")
+            {
+                CoinController();
+            }
         }
     }
 
-    public void Pause()
+    public void GamePause()
     {
-        Score = Base.GetComponent<BaseController>().Score;
+        PlayerPrefs.SetString("In Game State", "Pause");
+    }
 
+    private void DisplayScore(int Score)
+    {
         if (Score < 100)
         {
             TimeImage[4].color = new Vector4(1, 1, 1, 0);
@@ -67,6 +97,69 @@ public class ScoreController : MonoBehaviour
                 {
                     TimeImage[i].sprite = Number[j];
                 }
+            }
+        }
+    }
+
+    private int BestScore()
+    {
+        int BestScore = PlayerPrefs.GetInt("Best Score");
+
+        if (Score > BestScore)
+        {
+            PlayerPrefs.SetInt("Best Score", Score);
+            return Score;
+        }
+        else
+        {
+            return BestScore;
+        }
+    }
+
+    private void CoinController()
+    {
+        Coin = Score / 100;
+
+        if (Coin < 10)
+        {
+            TimeImage[2].color = new Vector4(1, 1, 1, 0);
+            TimeImage[1].color = new Vector4(1, 1, 1, 0);
+            TimeImage[0].color = new Vector4(1, 1, 1, 1);
+        }
+        else if (Coin < 100)
+        {
+            TimeImage[2].color = new Vector4(1, 1, 1, 0);
+            TimeImage[1].color = new Vector4(1, 1, 1, 1);
+            TimeImage[0].color = new Vector4(1, 1, 1, 1);
+        }
+        else if (Coin < 1000)
+        {
+            TimeImage[2].color = new Vector4(1, 1, 1, 1);
+            TimeImage[1].color = new Vector4(1, 1, 1, 1);
+            TimeImage[0].color = new Vector4(1, 1, 1, 1);
+        }
+
+        for (int i = 0; i < 10; i++)
+        {
+            if (Coin / 100 == i)
+            {
+                TimeImage[2].sprite = Number[i];
+            }
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            Coin = Coin % 100;
+
+            if (Coin / 10 == i)
+            {
+                TimeImage[1].sprite = Number[i];
+            }
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            if (Coin % 10 == i)
+            {
+                TimeImage[0].sprite = Number[i];
             }
         }
     }
