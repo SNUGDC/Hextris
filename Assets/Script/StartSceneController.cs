@@ -10,6 +10,11 @@ public class StartSceneController : MonoBehaviour
 
     private void Start()
     {
+        if (!(PlayerPrefs.HasKey("Skin Number")))
+        {
+            PlayerPrefs.SetInt("Skin Number", 0);
+        }
+
         HowToPlay1.SetActive(true);
         HowToPlay2.SetActive(false);
         HowToPlayPanel.SetActive(false);
