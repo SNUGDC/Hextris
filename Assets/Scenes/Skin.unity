@@ -825,6 +825,7 @@ MonoBehaviour:
   RedTile: {fileID: 434589836}
   YellowTile: {fileID: 1227026754}
   CheckMark: {fileID: 568665688}
+  SkinShadowPanel: {fileID: 1937265580}
   SkinNameWord:
   - {fileID: 21300000, guid: b2ba4270a98fd944c9092c2d243acfb8, type: 3}
   - {fileID: 21300000, guid: 34489143293f6c04a9c249b43a55b78b, type: 3}
@@ -849,7 +850,26 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4a3aff5e75130a04583f293fbe9b51a6, type: 3}
   - {fileID: 21300000, guid: 97f141a927eeda648bc1cdbd1cc26017, type: 3}
   - {fileID: 21300000, guid: 4232a419db9748b4aa47b2e531bb97d0, type: 3}
-  SkinPrice: 000000002c0100000a00000064000000f4010000
+  NumberImage:
+  - {fileID: 21300000, guid: 462575d0d35034443a42f7f7f50d24dd, type: 3}
+  - {fileID: 21300000, guid: 70c5870d53948724ab0471eb75c1cbbf, type: 3}
+  - {fileID: 21300000, guid: 700ec8fb7d719a24ebfe404f077a05bf, type: 3}
+  - {fileID: 21300000, guid: ebf14707efb68a140afa007acb7225d9, type: 3}
+  - {fileID: 21300000, guid: 109ec60911f2c3c4bb77b56a2225fdb4, type: 3}
+  - {fileID: 21300000, guid: 405265f8e41a89c4abf54a985a7aac83, type: 3}
+  - {fileID: 21300000, guid: d0d08af95b86b7c41a028ddabef9eaea, type: 3}
+  - {fileID: 21300000, guid: 9230a9d9d58a72541b2f76c1c6d53154, type: 3}
+  - {fileID: 21300000, guid: df00342b10530144e87b432307fff1bf, type: 3}
+  - {fileID: 21300000, guid: 938aa5c5d1b2fac45b0514638be092a4, type: 3}
+  SkinPrice: 000000002c0100003200000064000000f4010000
+  PriceImage:
+  - {fileID: 760155228}
+  - {fileID: 683767359}
+  - {fileID: 1293106749}
+  CoinImage:
+  - {fileID: 1328225762}
+  - {fileID: 501699680}
+  - {fileID: 740706191}
 --- !u!1 &740706189
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,7 +2039,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1937265582}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 688612729}
+        m_MethodName: BuySkin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &2061367688
@@ -2032,7 +2063,6 @@ GameObject:
   - component: {fileID: 2061367689}
   - component: {fileID: 2061367691}
   - component: {fileID: 2061367690}
-  - component: {fileID: 2061367692}
   m_Layer: 5
   m_Name: Coin
   m_TagString: Untagged
@@ -2094,30 +2124,3 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2061367688}
---- !u!114 &2061367692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2061367688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae8b4c6f1470af74caa65fecb94e4ff5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Number:
-  - {fileID: 21300000, guid: 462575d0d35034443a42f7f7f50d24dd, type: 3}
-  - {fileID: 21300000, guid: 70c5870d53948724ab0471eb75c1cbbf, type: 3}
-  - {fileID: 21300000, guid: 700ec8fb7d719a24ebfe404f077a05bf, type: 3}
-  - {fileID: 21300000, guid: ebf14707efb68a140afa007acb7225d9, type: 3}
-  - {fileID: 21300000, guid: 109ec60911f2c3c4bb77b56a2225fdb4, type: 3}
-  - {fileID: 21300000, guid: 405265f8e41a89c4abf54a985a7aac83, type: 3}
-  - {fileID: 21300000, guid: d0d08af95b86b7c41a028ddabef9eaea, type: 3}
-  - {fileID: 21300000, guid: 9230a9d9d58a72541b2f76c1c6d53154, type: 3}
-  - {fileID: 21300000, guid: df00342b10530144e87b432307fff1bf, type: 3}
-  - {fileID: 21300000, guid: 938aa5c5d1b2fac45b0514638be092a4, type: 3}
-  TimeImage:
-  - {fileID: 1328225762}
-  - {fileID: 501699680}
-  - {fileID: 740706191}
-  WhoAreYou: Shop Coin

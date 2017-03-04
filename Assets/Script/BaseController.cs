@@ -424,26 +424,26 @@ public class BaseController : MonoBehaviour
     private void Section2SpriteAssignBeforeSpread()
     {
         GroundworkBeforeSpread (7, 1);
-        GroundworkBeforeSpread (8, 0);
-        GroundworkBeforeSpread (9, 2);
-        GroundworkBeforeSpread (10, 0);
+        Tile[8].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+        GroundworkBeforeSpread(9, 2);
+        Tile[10].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
         GroundworkBeforeSpread (11, 3);
-        GroundworkBeforeSpread (12, 0);
+        Tile[12].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
         GroundworkBeforeSpread (13, 4);
-        GroundworkBeforeSpread (14, 0);
+        Tile[14].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
         GroundworkBeforeSpread (15, 5);
-        GroundworkBeforeSpread (16, 0);
+        Tile[16].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
         GroundworkBeforeSpread (17, 6);
     }
 
     private void Section1SpriteAssignBeforeSpread()
     {
-        GroundworkBeforeSpread (1, 0);
-        GroundworkBeforeSpread (2, 0);
-        GroundworkBeforeSpread (3, 0);
-        GroundworkBeforeSpread (4, 0);
-        GroundworkBeforeSpread (5, 0);
-        GroundworkBeforeSpread (6, 0);
+        Tile[1].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+        Tile[2].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+        Tile[3].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+        Tile[4].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+        Tile[5].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
+        Tile[6].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
     }
 
     private void RotateRight()

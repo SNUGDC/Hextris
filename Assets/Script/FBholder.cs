@@ -9,9 +9,8 @@ public class FBholder : MonoBehaviour
 {
     public GameObject DialogLoggedIn;
     public GameObject DialogLoggedOut;
-    public GameObject DialogProfilePic;
 
-    public Text DialogUserName;
+    public Image SharePlusCoinImage;
 
     void Awake()
     {
@@ -79,6 +78,7 @@ public class FBholder : MonoBehaviour
         {
             DialogLoggedIn.SetActive (true);
             DialogLoggedOut.SetActive (false);
+            SharePlusCoinImage.color = new Vector4(1, 1, 1, 0.3f);
 
             FB.API ("/me?fields=first_name", HttpMethod.GET, DisplayUsername);
             FB.API ("/me/picture?type=square&height=128&width=128", HttpMethod.GET, DisplayProfilePic);
@@ -87,6 +87,7 @@ public class FBholder : MonoBehaviour
         {
             DialogLoggedIn.SetActive (false);
             DialogLoggedOut.SetActive (true);
+            SharePlusCoinImage.color = new Vector4(1, 1, 1, 0);
         }
     }
 
@@ -94,7 +95,7 @@ public class FBholder : MonoBehaviour
     {
         if (result.Error == null)
         {
-            DialogUserName.text = "Hi there, " + result.ResultDictionary ["first_name"];
+            //DialogUserName.text = "Hi there, " + result.ResultDictionary ["first_name"];
         } 
         else
         {
@@ -106,9 +107,7 @@ public class FBholder : MonoBehaviour
     {
         if (result.Texture != null)
         {
-            Image ProfilePic = DialogProfilePic.GetComponent<Image> ();
-
-            ProfilePic.sprite = Sprite.Create (result.Texture, new Rect (0, 0, 128, 128), new Vector2 ());
+            //ProfilePic.sprite = Sprite.Create (result.Texture, new Rect (0, 0, 128, 128), new Vector2 ());
         }
     }
 
@@ -134,6 +133,16 @@ public class FBholder : MonoBehaviour
         else
         {
             Debug.Log ("Share Succeed");
+            SharePlusCoinImage.color = new Vector4(1, 1, 1, 1);
+
+            if (!(PlayerPrefs.HasKey("Coin")))
+            {
+                PlayerPrefs.SetInt("Coin", 20);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin") + 20);
+            }
         }
     }
 }

@@ -50,10 +50,6 @@ public class ScoreController : MonoBehaviour
             {
                 CoinController(Score / 100);
             }
-            else if (WhoAreYou == "Shop Coin")
-            {
-                CoinController(PlayerPrefs.GetInt("Coin"));
-            }
         }
     }
 
