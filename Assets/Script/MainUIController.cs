@@ -97,8 +97,8 @@ public class MainUIController : MonoBehaviour
         else
         {
             YouAlreadySawVideo.SetActive(false);
-            YouAlreadySawVideo.SetActive(true);
             YouAlreadySawVideo.GetComponent<Image>().color = new Vector4(1,1,1,1);
+            YouAlreadySawVideo.SetActive(true);
         }
     }
 }
