@@ -10,7 +10,10 @@ public class MainUIController : MonoBehaviour
     public Sprite[] GameState;
     public GameObject PausePanel;
     public GameObject PlayAgainButton;
+    public GameObject ShowFieldAfterGameOver;
     public GameObject VideoAdvertise;
+    public GameObject CoinFromVideo;
+    public GameObject YouAlreadySawVideo;
     public Image GameStateWord;
 
     private GameObject Base;
@@ -26,10 +29,12 @@ public class MainUIController : MonoBehaviour
         NextBlockImage[2] = GameObject.Find("Next Block 3").GetComponent<Image>();
         Base = GameObject.Find("Base");
         VideoAdvertise.SetActive(false);
+        YouAlreadySawVideo.SetActive(false);
 
         GameStateWord.sprite = GameState[0];
         BlockOrder = new int[3];
         PausePanel.SetActive(false);
+        ShowFieldAfterGameOver.SetActive(false);
     }
 
     void Update()
@@ -76,7 +81,24 @@ public class MainUIController : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = false;
         GameStateWord.sprite = GameState[1];
         PlayAgainButton.SetActive(false);
+        ShowFieldAfterGameOver.SetActive(true);
         VideoAdvertise.SetActive(true);
         PausePanel.SetActive(true);
+    }
+
+    public void ShowVideoAdvertise()
+    {
+        if(CoinFromVideo.GetComponent<Image>().color.a != 1)
+        {
+            AdManager.Instance.ShowVideo();
+            CoinFromVideo.GetComponent<Image>().color = new Vector4(1,1,1,1);
+            PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin") + 20);
+        }
+        else
+        {
+            YouAlreadySawVideo.SetActive(false);
+            YouAlreadySawVideo.SetActive(true);
+            YouAlreadySawVideo.GetComponent<Image>().color = new Vector4(1,1,1,1);
+        }
     }
 }

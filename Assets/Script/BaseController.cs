@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class BaseController : MonoBehaviour
     public GameObject[] ControlBlock;   
 
     public GameObject CreatedBlocks;
+    public GameObject BlockisnotFixed;
     public GameObject[] Tile;
     public bool IsBlockCreated;
     public bool RotateToRight;
@@ -60,6 +62,7 @@ public class BaseController : MonoBehaviour
         AnimationTime = 0;
 
         UIController = GameObject.Find("UIController");
+        BlockisnotFixed.SetActive(false);
 
         PlayerPrefs.SetString("In Game State", "Play");
 
@@ -106,8 +109,6 @@ public class BaseController : MonoBehaviour
             }
             break;
         }
-
-        AdManager.Instance.ShowBanner();
     }
 
     private void Update()
@@ -125,20 +126,32 @@ public class BaseController : MonoBehaviour
                 {
                     if (CheckBeforeMove() == true)
                     {
-                        if (Input.GetKeyDown(KeyCode.DownArrow) || MoveBlockDownward)
+                        if (Input.GetKeyUp(KeyCode.C) || CreateBlock)
+                        {
+                            BlockisnotFixed.SetActive(false);
+                            BlockisnotFixed.SetActive(true);
+                            BlockisnotFixed.GetComponent<Image>().color = new Vector4(1,1,1,1);
+                            CreateBlock = false;
+                        }
+                        else if (Input.GetKeyDown(KeyCode.DownArrow) || MoveBlockDownward)
                         {
                             MoveBlocks();
+                            BlockisnotFixed.SetActive(false);
                         }
                     }
                     else if (CheckBeforeMove() == false)
                     {
                         if (Input.GetKeyUp(KeyCode.C) || CreateBlock)
                         {
-                            //고정 되지 않았다는 사실을 알려줘야함.
+                            BlockisnotFixed.SetActive(false);
+                            BlockisnotFixed.SetActive(true);
+                            BlockisnotFixed.GetComponent<Image>().color = new Vector4(1,1,1,1);
+                            CreateBlock = false;
                         }
                         else if (Input.GetKeyDown(KeyCode.DownArrow) || MoveBlockDownward)
                         {
                             Coloring();
+                            BlockisnotFixed.SetActive(false);
                         }
                     }
                 }

@@ -10,6 +10,8 @@ public class StartSceneController : MonoBehaviour
 
     private void Start()
     {
+        AdManager.Instance.ShowBanner();
+        
         if (!(PlayerPrefs.HasKey("Skin Number")))
         {
             PlayerPrefs.SetInt("Skin Number", 0);
