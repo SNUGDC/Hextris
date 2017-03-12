@@ -109,6 +109,8 @@ public class BaseController : MonoBehaviour
             }
             break;
         }
+
+        AdManager.Instance.ShowBanner();
     }
 
     private void Update()
