@@ -10,7 +10,7 @@ public class MainUIController : MonoBehaviour
     public Sprite[] GameState;
     public GameObject PausePanel;
     public GameObject PlayAgainButton;
-    public GameObject FacebookShare;
+    public GameObject VideoAdvertise;
     public Image GameStateWord;
 
     private GameObject Base;
@@ -25,7 +25,7 @@ public class MainUIController : MonoBehaviour
         NextBlockImage[1] = GameObject.Find("Next Block 2").GetComponent<Image>();
         NextBlockImage[2] = GameObject.Find("Next Block 3").GetComponent<Image>();
         Base = GameObject.Find("Base");
-        FacebookShare.SetActive(false);
+        VideoAdvertise.SetActive(false);
 
         GameStateWord.sprite = GameState[0];
         BlockOrder = new int[3];
@@ -70,27 +70,13 @@ public class MainUIController : MonoBehaviour
         }
     }
 
-    public void BombButtonIsClicked()
-    {
-        if(Base.GetComponent<BaseController>().IsBlockCreated == true
-            && Base.GetComponent<BaseController>().SpecialBlock == 0)
-            Base.GetComponent<BaseController>().SpecialBlockNumber = 2;
-    }
-
-    public void SinkerButtonIsClicked()
-    {
-        if (Base.GetComponent<BaseController>().IsBlockCreated == true
-            && Base.GetComponent<BaseController>().SpecialBlock == 0)
-            Base.GetComponent<BaseController>().SpecialBlockNumber = 1;
-    }
-
     public void GameOver()
     {
         PlayerPrefs.SetString("In Game State", "Pause");
         GetComponent<BoxCollider2D>().enabled = false;
         GameStateWord.sprite = GameState[1];
         PlayAgainButton.SetActive(false);
-        FacebookShare.SetActive(true);
+        VideoAdvertise.SetActive(true);
         PausePanel.SetActive(true);
     }
 }

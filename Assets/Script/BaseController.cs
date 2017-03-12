@@ -21,8 +21,6 @@ public class BaseController : MonoBehaviour
     public bool MoveBlockDownward;
     public bool CreateBlock;
     public int[] BlockOrder;
-    public int SpecialBlockNumber;
-    public int SpecialBlock;
     public int Score;
     public float GameTime;
 
@@ -54,7 +52,6 @@ public class BaseController : MonoBehaviour
         Score = 0;
         RotatingSpeed = 0.5f;
         RotateStartTime = 0;
-        SpecialBlockNumber = 0;
         ExplodeWaitingTime = 1.5f;
         IsRotateRight = false;
         IsRotateLeft = false;
@@ -132,40 +129,16 @@ public class BaseController : MonoBehaviour
                         {
                             MoveBlocks();
                         }
-                        else if (SpecialBlockNumber != 0)
-                        {
-                            CreateSpecialBlock();
-                        }
                     }
                     else if (CheckBeforeMove() == false)
                     {
-                        if (SpecialBlock == 0)
+                        if (Input.GetKeyUp(KeyCode.C) || CreateBlock)
                         {
-                            if (Input.GetKeyUp(KeyCode.C) || CreateBlock)
-                            {
-                                Coloring();
-                                CreateBlocks();
-                            }
-                            else if (Input.GetKeyDown(KeyCode.DownArrow) || MoveBlockDownward)
-                            {
-                                Coloring();
-                            }
-                            else if (SpecialBlockNumber != 0)
-                            {
-                                CreateSpecialBlock();
-                            }
+                            //고정 되지 않았다는 사실을 알려줘야함.
                         }
-                        else if (SpecialBlock != 0)
+                        else if (Input.GetKeyDown(KeyCode.DownArrow) || MoveBlockDownward)
                         {
-                            if (Input.GetKeyUp(KeyCode.C) || CreateBlock)
-                            {
-                                SpecialBlockEffect();
-                                CreateBlocks();
-                            }
-                            else if (Input.GetKeyDown(KeyCode.DownArrow) || MoveBlockDownward)
-                            {
-                                SpecialBlockEffect();
-                            }
+                            Coloring();
                         }
                     }
                 }
@@ -567,8 +540,6 @@ public class BaseController : MonoBehaviour
 
     private void CreateBlocks()
     {
-        SpecialBlock = 0;
-
         BlockNumber = BlockOrder[0];
 
         if (CanCreateBlock() == false)
@@ -760,96 +731,6 @@ public class BaseController : MonoBehaviour
                 Debug.Log("Something is wrong at create block");
                 return false;
         }
-    }
-
-    private void CreateSpecialBlock()
-    {
-        Destroy(CreatedBlocks);
-
-        switch (SpecialBlockNumber)
-        {
-            case 1:
-                Instantiate(Blocks[18], this.transform, false);
-                ControlBlockName = "100t(Clone)";
-                CreatedBlocks = GameObject.Find(ControlBlockName);
-                SpecialBlock = 1;
-                break;
-            case 2:
-                Instantiate(Blocks[19], this.transform, false);
-                ControlBlockName = "Bomb(Clone)";
-                CreatedBlocks = GameObject.Find(ControlBlockName);
-                SpecialBlock = 2;
-                break;
-            default:
-                break;
-        }
-
-        for (int i = 0; i <= 2; i++)
-        {
-            ControlBlock[i] = CreatedBlocks.transform.GetChild(i).gameObject;
-        }
-
-        SpecialBlockNumber = 0;
-    }
-
-    private void SpecialBlockEffect()
-    {
-        switch (SpecialBlock)
-        {
-            case 1:
-                bool DeletedAllBlock = false;
-                int j = 1;
-
-                while (DeletedAllBlock == false)
-                {
-                    for (int i = 0; i < Tile.Length; i++)
-                    {
-                        if (Tile[i].transform.localPosition == ControlBlock[0].transform.localPosition + j * GravityVector())
-                        {
-                            Tile[i].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
-                            DeletedAllBlock = false;
-                            j++;
-                        }
-                        else DeletedAllBlock = true;
-                    }
-                }
-                break;
-            case 2:
-                for (int i = 0; i < Tile.Length; i++)
-                {
-                    if (Tile[i].transform.localPosition == ControlBlock[0].transform.localPosition + new Vector3(0, -2.1f, 0))
-                    {
-                        Tile[i].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
-                    }
-                    if (Tile[i].transform.localPosition == ControlBlock[0].transform.localPosition + new Vector3(0, 2.1f, 0))
-                    {
-                        Tile[i].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
-                    }
-                    if (Tile[i].transform.localPosition == ControlBlock[0].transform.localPosition + new Vector3(-1.83f, -1.05f, 0))
-                    {
-                        Tile[i].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
-                    }
-                    if (Tile[i].transform.localPosition == ControlBlock[0].transform.localPosition + new Vector3(-1.83f, 1.05f, 0))
-                    {
-                        Tile[i].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
-                    }
-                    if (Tile[i].transform.localPosition == ControlBlock[0].transform.localPosition + new Vector3(1.83f, -1.05f, 0))
-                    {
-                        Tile[i].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
-                    }
-                    if (Tile[i].transform.localPosition == ControlBlock[0].transform.localPosition + new Vector3(1.83f, 1.05f, 0))
-                    {
-                        Tile[i].GetComponent<SpriteRenderer>().sprite = ColorTile[0];
-                    }
-                }
-                break;
-            default:
-                Debug.Log("Something is Wrong at Special Block");
-                break;
-        }
-
-        Destroy(CreatedBlocks);
-        IsBlockCreated = false;
     }
 
     private void Coloring()
