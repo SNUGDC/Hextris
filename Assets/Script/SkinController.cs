@@ -50,6 +50,8 @@ public class SkinController : MonoBehaviour
 
     private void Update()
     {
+        LoadSkinStatus();
+
         SkinName.sprite = SkinNameWord[WhatSkinShow];
         BlueTile.sprite = SkinBlue[WhatSkinShow];
         RedTile.sprite = SkinRed[WhatSkinShow];
@@ -68,6 +70,7 @@ public class SkinController : MonoBehaviour
         ShowCoin();
         ShowSkinPrice();
         SkinShadowPanelController();
+        SaveSkinStatus();
     }
 
     public void NextSkin()
@@ -152,6 +155,8 @@ public class SkinController : MonoBehaviour
         if (Coin >= NowSkinPrice)
         {
             BoughtSkin[WhatSkinShow] = true;
+            Coin = Coin - NowSkinPrice;
+            PlayerPrefs.SetInt("Coin", Coin);
         }
         else
         {
@@ -214,6 +219,43 @@ public class SkinController : MonoBehaviour
             {
                 CoinImage[0].sprite = NumberImage[i];
             }
+        }
+    }
+
+    private void SaveSkinStatus()
+    {
+        int Status = 0;
+
+        for (int i = 0; i <= 4; i++)
+        {
+            if (BoughtSkin[i] == true)
+            {
+                Status = Status + 1;
+            }
+
+            Status = Status * 10;
+        }
+
+        Status = Status / 10;
+
+        PlayerPrefs.SetInt("Skin Status", Status);
+        Debug.Log(Status);
+    }
+
+    private void LoadSkinStatus()
+    {
+        int Status;
+
+        Status = PlayerPrefs.GetInt("Skin Status");
+
+        for (int i = 0; i <= 4; i++)
+        {
+            if (Status % 10 == 1)
+            {
+                BoughtSkin[4 - i] = true;
+            }
+
+            Status = Status / 10;
         }
     }
 }
